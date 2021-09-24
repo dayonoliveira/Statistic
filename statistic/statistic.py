@@ -5,35 +5,77 @@ import math
 #
 
 def Fac(fi:list):
-    pass
+    aux:list = []
+
+    for x in range(len(fi)):
+        if x == 0:
+            aux.append(fi[x])
+        else:
+            aux.append(aux[x - 1] + fi[x])
+    
+    return aux
 
 #
 # Calculation of accumulated decreasing frequency.
 #
 
 def Fad(fi:list):
-    pass
+    aux:list = []
+
+    for x in reversed(range(len(fi))):
+        if x == len(fi) - 1:
+            aux.append(fi[x])
+        else:
+            aux.insert(0, aux[0] + fi[x])
+
+    return aux
 
 #
 # Calculation of relative frequency.
 #
 
-def Fir(fi:list, total:int):
-    pass
+def Fir(fi:list):
+    aux:list = []
+    total:int = 0
+
+    for x in fi:
+        total += x
+    
+    for x in fi:
+        aux.append(x / total)
+    
+    return aux
 
 #
 # Calculation of the relative increasing accumulated frequency.
 #
 
 def Facr(fir:list):
-    pass
+    aux:list = []
+
+    for x in range(len(fir)):
+        if x == 0:
+            aux.append(fir[x])
+        else:
+            aux.append(aux[x - 1] + fir[x])
+    
+    return aux
 
 #
 # Calculation of the relative decreasing accumulated frequency.
 #
 
 def Fadr(fir:list):
-    pass
+    aux:list = []
+
+    for x in reversed(range(len(fir))):
+        if x == len(fir) - 1:
+            aux.append(fir[x])
+        else:
+            aux.insert(0, aux[0] + fir[x])
+
+    print(aux)
+    return aux
 
 #
 # Calculating the midpoint of classes for large sets.
@@ -204,3 +246,15 @@ def GeralCalculationLargeSets():
     variance = Variance(midPoint, fi, mean, sampleQtt)
     standart_deviation = StandartDeviation(variance)
     coefficient_variation = CoefficientVariation(standart_deviation, mean) """
+
+# Tests
+
+# Fac([81,30,15,18,6])
+
+# Fad([81,30,15,18,6])
+
+# Fir([81,30,15,18,6])
+
+# Facr(Fir([81,30,15,18,6]))
+
+# Fadr(Fir([81,30,15,18,6]))
