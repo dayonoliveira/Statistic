@@ -232,8 +232,7 @@ def GranMean(midPoint:list, fi:list, sampleQtt:int):
 # Mode calculation for large data sets.
 #
     
-def GranMode(k:list, fi:list, classBreadth:float):
-    classes:list = OrganizeClass(k)
+def GranMode(classes:list, fi:list, classBreadth:float):
     biggerIndex:list = []
     biggerFreq:float = 0.0
     modes:list = []
@@ -268,8 +267,7 @@ def GranMode(k:list, fi:list, classBreadth:float):
 # Calculating the median for large data sets.
 #
 
-def GranMedian(k:list, fi:list, fac:list, classBreadth:float):
-    classes:list = OrganizeClass(k)
+def GranMedian(classes:list, fi:list, fac:list, classBreadth:float):
     aux:int = fac[len(fac) - 1]
     medianIndex:int  = 0
     median:float = 0.0
@@ -331,27 +329,42 @@ def CoefficientVariation(stanDevDResult:float, mean:float):
 # General calculation of a large dataset.
 #
 
-def GeralCalculationLargeSets():
-    """ k = list(input("Limites das classes: ").split(","))
-    fullRange:int
-    classBreadth:float
-    midPoint = list(input("Pontos médios: ").split(","))
-    fi = list(input("Frequências simples: ").split(","))
-    sampleQtt = int(input("Total de amostras: "))
-    mean = float(GranMean(midPoint, fi, sampleQtt))
-    aux:list = []
+def GeralCalculationLargeSets(set:list, fi:list, printData:bool = True):
+    classes:list = OrganizeClass(set)
+    fac = Fac(fi)
+    fad = Fad(fi)
+    fir = Fir(fi)
+    facr = Facr(fir)
+    fadr = Fadr(fir)
+    granMidPoint = GranMidPoint(classes)
+    fullRange = FullRange(classes)
+    classBreadth = ClassBreadth(fullRange, classes)
+    sampleQtt = SampleQtt(fi)
+    granMean = GranMean(granMidPoint, fi, sampleQtt)
+    granMode = GranMode(classes, fi, classBreadth)
+    granMedian = GranMedian(classes, fi, fac, classBreadth)
+    variance = Variance(granMidPoint, fi, granMean, sampleQtt)
+    standartDeviation = StandartDeviation(variance)
+    coefficientVariation = CoefficientVariation(standartDeviation, granMean)
 
-    for x in range(0, int(len(k)), 2):
-        aux.append([k[x], k[x + 1]])
-    
-    k = aux
+    if printData == True:
+        print("Classes: " + str(classes))
+        print("Fi: " + str(fi))
+        print("Fir: " + str(fir))
+        print("Fac: " + str(fac))
+        print("Fad: " + str(fad))
+        print("Facr: " + str(facr))
+        print("Fadr: " + str(fadr))
+        print("Mid points: " + str(granMidPoint))
+        print("Full range: " + str(fullRange))
+        print("Class breadth: " + str(classBreadth))
+        print("Total samples: " + str(sampleQtt))
+        print("Mean: " + str(granMean))
+        print("Mode: " + str(granMode))
+        print("Median: " + str(granMedian))
+        print("Variance: " + str(variance))
+        print("Standart deviation: " + str(standartDeviation))
+        print("Coefficient variation: " + str(coefficientVariation))
 
-    fullRange = int(k[len(k) - 1][1]) - int(k[0][0])
 
-    classBreadth = fullRange / len(k)
-
-    variance = Variance(midPoint, fi, mean, sampleQtt)
-    standart_deviation = StandartDeviation(variance)
-    coefficient_variation = CoefficientVariation(standart_deviation, mean) """
-
-# Tests
+GeralCalculationLargeSets([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5], [7,16,35,24,18])
