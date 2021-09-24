@@ -82,21 +82,26 @@ def Fadr(fir:list):
 #
 
 def GranMidPoint(classes:list):
-    pass
+    aux:list = []
+
+    for x in classes:
+        aux.append((x[0] + x[1]) / 2)
+    
+    return aux
 
 #
 # Calculation of the total amplitude.
 #
 
 def FullRange(classes:list):
-    pass
+    return float(classes[len(classes) - 1][1]) - float(classes[0][0])
 
 #
 # Class amplitude calculation.
 #
 
 def ClassBreadth(fullRange:float, classes:list):
-    pass
+    return fullRange / len(classes)
 
 #
 # Function that organizes the data of the class vector.
@@ -258,3 +263,9 @@ def GeralCalculationLargeSets():
 # Facr(Fir([81,30,15,18,6]))
 
 # Fadr(Fir([81,30,15,18,6]))
+
+# GranMidPoint(OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5]))
+
+# FullRange(OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5]))
+
+# ClassBreadth(FullRange(OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5])), OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5]))
