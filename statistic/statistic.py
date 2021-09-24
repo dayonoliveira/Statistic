@@ -1,6 +1,31 @@
 import math
 
 #
+# Calculating the absolute frequency of a dataset.
+#
+
+def Fi(set:list, respectiveValues:bool = False):
+    aux:list = []
+    freq:list = []
+
+    if respectiveValues == False:
+        for x in set:
+            if aux.count(x) == 0:
+                aux.append(x)
+        
+        for x in aux:
+            freq.append(set.count(x))
+    else:
+        for x in set:
+            if aux.count(x) == 0:
+                aux.append(x)
+        
+        for x in aux:
+            freq.append([x, set.count(x)])
+    
+    return freq
+
+#
 # Calculation of the accumulated increasing frequency.
 #
 
@@ -74,7 +99,19 @@ def Fadr(fir:list):
         else:
             aux.insert(0, aux[0] + fir[x])
 
-    print(aux)
+    return aux
+
+#
+# Calculation of the midpoints of a dataset.
+#
+
+def MidPoint(set:list):
+    aux:list = []
+
+    for x in set:
+            if aux.count(x) == 0:
+                aux.append(x)
+    
     return aux
 
 #
@@ -111,6 +148,60 @@ def OrganizeClass(classes:list):
     aux:list = []
     for x in range(0, int(len(classes)), 2):
         aux.append([classes[x], classes[x + 1]])
+    
+    return aux
+
+#
+# Calculating the average of a dataset.
+#
+
+def Mean(set:list):
+    aux:float
+    
+    for x in set:
+        aux += x
+    
+    return aux / len(set)
+
+#
+# Calculating the mode of a dataset.
+#
+
+def Mode(set:list):
+    mostRepeatingValue:list = []
+    highestOccurrence:int = 0
+    aux:list = []
+
+    for x in set:
+        if aux.count(x) == 0:
+            aux.append(x)
+    
+    for x in range(len(aux)):
+        if set.count(aux[x]) > highestOccurrence:
+            highestOccurrence = set.count(aux[x])
+            mostRepeatingValue[0] = aux[x]
+
+    for x in range(len(aux)):
+        if aux[x] != mostRepeatingValue:
+            if set.count(aux[x]) == highestOccurrence:
+                mostRepeatingValue.append(aux[x])
+    
+    return mostRepeatingValue
+            
+#
+# Calculating the median of a dataset.
+#
+
+def Median(set:list):
+    aux:float = 0.0
+
+    if len(set) % 2 == 0:
+        set.sort()
+        aux = set[len(set)] - set[len(set) + 1]
+        aux /= 2
+    else:
+        set.sort()
+        aux = set[math.ceil(len(set) / 2)]
     
     return aux
 
@@ -253,19 +344,3 @@ def GeralCalculationLargeSets():
     coefficient_variation = CoefficientVariation(standart_deviation, mean) """
 
 # Tests
-
-# Fac([81,30,15,18,6])
-
-# Fad([81,30,15,18,6])
-
-# Fir([81,30,15,18,6])
-
-# Facr(Fir([81,30,15,18,6]))
-
-# Fadr(Fir([81,30,15,18,6]))
-
-# GranMidPoint(OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5]))
-
-# FullRange(OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5]))
-
-# ClassBreadth(FullRange(OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5])), OrganizeClass([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5]))
