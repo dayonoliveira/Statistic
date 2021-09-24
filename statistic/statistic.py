@@ -206,6 +206,17 @@ def Median(set:list):
     return aux
 
 #
+# Calculation of total samples.
+#
+
+def SampleQtt(fi:list):
+    aux:int = 0
+
+    for x in fi:
+        aux += x
+    
+    return aux
+#
 # Arithmetic mean calculation for large data sets.
 #
 
