@@ -6,7 +6,7 @@ This is a library developed in Python that aims to provide the necessary functio
 
 > Note: The library is still under development.
 
-### Sumário
+### Summary
 
   - [How to use](#how-to-use)
   - [More details](#more-details)
