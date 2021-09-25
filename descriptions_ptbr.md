@@ -41,7 +41,7 @@ Esta função faz todos os cálculos possíveis da biblioteca voltados para conj
 
 Exemplo de uma tabela de classes:
 
-![tabela de classes](img/tabela-de-classes.png)
+<img alt="Tabela de classes" src="img/tabela-de-classes.png">
 
 As classes são representadas pela coluna Idades e os dados passados no parâmetro `set` vão ficar assim:
 
@@ -62,7 +62,7 @@ Esta função tem o mesmo propósito da anterior, porém o foco dela é para con
 
 Exemplo de conjunto de dados discreto:
 
-![conjunto de dados](img/conjunto-de-dados-discreto.png)
+<img alt="Conjunto de dados discretos" src="img/conjunto-de-dados-discreto.png">
 
 Os dados que serão passados no parâmetro `set` são todos os da imagem acima. Eles ficariam dentro de um vetor assim como o da função anterior.
 

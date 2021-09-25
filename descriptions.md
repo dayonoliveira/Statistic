@@ -41,7 +41,7 @@ This function does all possible library calculations for continuous datasets, la
 
 Example of a class table:
 
-![class table](img/class-table.png)
+<img alt="Class table" src="img/tabela-de-classes.png">
 
 Classes are represented by the _Idades_ column and the data passed in the `set` parameter will look like this:
 
@@ -62,7 +62,7 @@ This function has the same purpose as the previous one, but its focus is on disc
 
 Discrete dataset example:
 
-![dataset](img/discrete-dataset.png)
+<img alt="Discrete dataset" src="img/conjunto-de-dados-discreto.png">
 
 The data that will be passed in the `set` parameter are all the ones in the image above. They would be inside a vector just like the previous function.
 
