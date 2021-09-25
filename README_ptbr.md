@@ -21,6 +21,6 @@ Por enquanto, o único método possível é:
 
 ## Mais detalhes
 
-Neste projeto há um arquivo com a explicação mais detalhada do que cada método faz. O arquivo que tem essas explicações e detalhes é o `descriptions.md`.
+Neste projeto há um arquivo com a explicação mais detalhada do que cada método faz. O arquivo que tem essas explicações e detalhes é o [`descriptions.md`](descriptions.md).
 
-> Nota: O arquivo `descriptions.md` ainda está sendo desenvolvido.
+> Nota: O arquivo `descriptions.md` está pronto. Caso haja alguma modificação de estrutura no arquivo `statistic.py`, o `descriptions.md` vai ser modificado.

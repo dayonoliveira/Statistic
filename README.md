@@ -21,6 +21,6 @@ For now, the only possible method is:
 
 ## More details
 
-In this project there is a file with a more detailed explanation of what each method does. The file that has these explanations and details is the `descriptions.md`.
+In this project there is a file with a more detailed explanation of what each method does. The file that has these explanations and details is the [`descriptions.md`](descriptions.md).
 
-> Note: The `descriptions.md` file is still under development.
+> Note: The `descriptions.md` file is ready. If there is any structure modification in the `statistic.py` file, the `descriptions.md` will be modified.
