@@ -130,15 +130,25 @@ def GranMidPoint(classes:list):
 # Calculation of the total amplitude.
 #
 
-def FullRange(classes:list):
-    return float(classes[len(classes) - 1][1]) - float(classes[0][0])
+def FullRange(classes:list, simple:bool = False):
+    if simple == False:
+        return float(classes[len(classes) - 1][1]) - float(classes[0][0])
+    else:
+        classes.sort()
+        return float(classes[len(classes) - 1]) - float(classes[0])
 
 #
 # Class amplitude calculation.
 #
 
-def ClassBreadth(fullRange:float, classes:list):
-    return fullRange / len(classes)
+def ClassBreadth(fullRange:float, classes:list, simple:bool = False):    
+    if simple == False:
+        return fullRange / len(classes)
+    else:
+        if len(classes) <= 25:
+            return fullRange / 5
+        else:
+            return fullRange / math.sqrt(len(classes))
 
 #
 # Function that organizes the data of the class vector.
@@ -329,7 +339,7 @@ def CoefficientVariation(stanDevDResult:float, mean:float):
 # General calculation of a large dataset.
 #
 
-def GeralCalculationLargeSets(set:list, fi:list, printData:bool = True):
+def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
     classes:list = OrganizeClass(set)
     fac = Fac(fi)
     fad = Fad(fi)
@@ -346,6 +356,25 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = True):
     variance = Variance(granMidPoint, fi, granMean, sampleQtt)
     standartDeviation = StandartDeviation(variance)
     coefficientVariation = CoefficientVariation(standartDeviation, granMean)
+    resultVector:list = []
+
+    resultVector.append(classes)
+    resultVector.append(fi)
+    resultVector.append(fir)
+    resultVector.append(fac)
+    resultVector.append(fad)
+    resultVector.append(facr)
+    resultVector.append(fadr)
+    resultVector.append(granMidPoint)
+    resultVector.append(fullRange)
+    resultVector.append(classBreadth)
+    resultVector.append(sampleQtt)
+    resultVector.append(granMean)
+    resultVector.append(granMode)
+    resultVector.append(granMedian)
+    resultVector.append(variance)
+    resultVector.append(standartDeviation)
+    resultVector.append(coefficientVariation)
 
     if printData == True:
         print("Classes: " + str(classes))
@@ -366,5 +395,67 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = True):
         print("Standart deviation: " + str(standartDeviation))
         print("Coefficient variation: " + str(coefficientVariation))
 
+        return resultVector
+    else:
+        return resultVector
+    
+def GeralCalculationSimpleSets(set:list, printData:bool = False):
+    fi = Fi(set)
+    fir = Fir(fi)
+    fac = Fac(fi)
+    fad = Fad(fi)
+    facr = Facr(fir)
+    fadr = Fadr(fir)
+    midPoint = MidPoint(set)
+    fullRange = FullRange(set, True)
+    classBreadth = ClassBreadth(fullRange, set, True)
+    sampleQtt = SampleQtt(fi)
+    mean = Mean(set)
+    mode = Mode(set)
+    median = Median(set)
+    variance = Variance(midPoint, fi, mean, sampleQtt)
+    standartDeviation = StandartDeviation(variance)
+    coefficientVariation = CoefficientVariation(standartDeviation, mean)
+    resultVector:list = []
 
-GeralCalculationLargeSets([1.5,1.7,1.7,1.9,1.9,2.1,2.1,2.3,2.3,2.5], [7,16,35,24,18])
+    resultVector.append(set)
+    resultVector.append(fi)
+    resultVector.append(fir)
+    resultVector.append(fac)
+    resultVector.append(fad)
+    resultVector.append(facr)
+    resultVector.append(fadr)
+    resultVector.append(midPoint)
+    resultVector.append(fullRange)
+    resultVector.append(classBreadth)
+    resultVector.append(sampleQtt)
+    resultVector.append(mean)
+    resultVector.append(mode)
+    resultVector.append(median)
+    resultVector.append(variance)
+    resultVector.append(standartDeviation)
+    resultVector.append(coefficientVariation)
+
+    if printData == True:
+        print("Set: " + str(set))
+        print("Fi: " + str(fi))
+        print("Fir: " + str(fir))
+        print("Fac: " + str(fac))
+        print("Fad: " + str(fad))
+        print("Facr: " + str(facr))
+        print("Fadr: " + str(fadr))
+        print("Mid points: " + str(midPoint))
+        print("Full range: " + str(fullRange))
+        print("Class breadth: " + str(classBreadth))
+        print("Total samples: " + str(sampleQtt))
+        print("Mean: " + str(mean))
+        print("Mode: " + str(mode))
+        print("Median: " + str(median))
+        print("Variance: " + str(variance))
+        print("Standart deviation: " + str(standartDeviation))
+        print("Coefficient variation: " + str(coefficientVariation))
+
+        return resultVector
+    else:
+        return resultVector
+        
