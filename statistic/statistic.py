@@ -219,13 +219,16 @@ def Median(set:list):
 # Calculation of total samples.
 #
 
-def SampleQtt(fi:list):
+def SampleQtt(set:list, simple: bool = False):
     aux:int = 0
 
-    for x in fi:
-        aux += x
-    
-    return aux
+    if simple == False:
+        for x in set:
+            aux += x
+        
+        return aux
+    else:
+        return len(set)
 #
 # Arithmetic mean calculation for large data sets.
 #
@@ -313,27 +316,33 @@ def GranMedian(classes:list, fi:list, fac:list, classBreadth:float):
 # Calculation of variance.
 #
 
-def Variance(midPoint:list, fi:list, mean:float, sampleQtt:int):
+def Variance(midPoint:list, fi:list, mean:float, sampleQtt:int, simple:bool = False):
     value1:float = 0
 
-    for x in range(len(midPoint)):
-        value1 += pow(float(midPoint[x]) - mean, 2) * float(fi[x])
+    if simple == False:
+        for x in range(len(midPoint)):
+            value1 += pow(float(midPoint[x]) - mean, 2) * float(fi[x])
 
-    return round(value1 / (sampleQtt - 1), 2)
+        return round(value1 / (sampleQtt - 1), 2)
+    else:
+        for x in range(len(midPoint)):
+            value1 += pow(float(midPoint[x]) - mean, 2)
+
+        return round(value1 / (sampleQtt - 1), 2)
 
 #
 # Calculation of standard deviation.
 #
 
-def StandartDeviation(varianceResult:float):
+def StandardDeviation(varianceResult:float):
     return round(math.sqrt(varianceResult), 2)
 
 #
 # Calculation of the coefficient of variation.
 #
 
-def CoefficientVariation(stanDevDResult:float, mean:float):
-    return round((stanDevDResult / mean) * 100, 1)
+def CoefficientVariation(stanDevResult:float, mean:float):
+    return round((stanDevResult / mean) * 100, 1)
 
 #
 # General calculation of a large dataset.
@@ -354,8 +363,8 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
     granMode = GranMode(classes, fi, classBreadth)
     granMedian = GranMedian(classes, fi, fac, classBreadth)
     variance = Variance(granMidPoint, fi, granMean, sampleQtt)
-    standartDeviation = StandartDeviation(variance)
-    coefficientVariation = CoefficientVariation(standartDeviation, granMean)
+    standardDeviation = StandardDeviation(variance)
+    coefficientVariation = CoefficientVariation(standardDeviation, granMean)
     resultVector:list = []
 
     resultVector.append(classes)
@@ -373,7 +382,7 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
     resultVector.append(granMode)
     resultVector.append(granMedian)
     resultVector.append(variance)
-    resultVector.append(standartDeviation)
+    resultVector.append(standardDeviation)
     resultVector.append(coefficientVariation)
 
     if printData == True:
@@ -392,7 +401,7 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
         print("Mode: " + str(granMode))
         print("Median: " + str(granMedian))
         print("Variance: " + str(variance))
-        print("Standart deviation: " + str(standartDeviation))
+        print("Standart deviation: " + str(standardDeviation))
         print("Coefficient variation: " + str(coefficientVariation))
 
         return resultVector
@@ -418,8 +427,8 @@ def GeralCalculationSimpleSets(set:list, printData:bool = False):
     mode = Mode(set)
     median = Median(set)
     variance = Variance(midPoint, fi, mean, sampleQtt)
-    standartDeviation = StandartDeviation(variance)
-    coefficientVariation = CoefficientVariation(standartDeviation, mean)
+    standardDeviation = StandardDeviation(variance)
+    coefficientVariation = CoefficientVariation(standardDeviation, mean)
     resultVector:list = []
 
     resultVector.append(set)
@@ -437,7 +446,7 @@ def GeralCalculationSimpleSets(set:list, printData:bool = False):
     resultVector.append(mode)
     resultVector.append(median)
     resultVector.append(variance)
-    resultVector.append(standartDeviation)
+    resultVector.append(standardDeviation)
     resultVector.append(coefficientVariation)
 
     if printData == True:
@@ -456,7 +465,7 @@ def GeralCalculationSimpleSets(set:list, printData:bool = False):
         print("Mode: " + str(mode))
         print("Median: " + str(median))
         print("Variance: " + str(variance))
-        print("Standart deviation: " + str(standartDeviation))
+        print("Standart deviation: " + str(standardDeviation))
         print("Coefficient variation: " + str(coefficientVariation))
 
         return resultVector
