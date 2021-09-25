@@ -398,7 +398,11 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
         return resultVector
     else:
         return resultVector
-    
+
+#
+# General calculation of a small dataset.
+#
+
 def GeralCalculationSimpleSets(set:list, printData:bool = False):
     fi = Fi(set)
     fir = Fir(fi)
