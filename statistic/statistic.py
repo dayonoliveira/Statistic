@@ -1,7 +1,7 @@
 import math
 
 #
-# Calculating the absolute frequency of a dataset.
+# Calculating the absolute frequency of a set of discrete data.
 #
 
 def Fi(set:list, respectiveValues:bool = False):
@@ -102,10 +102,10 @@ def Fadr(fir:list):
     return aux
 
 #
-# Calculation of the midpoints of a dataset.
+# Calculation of variable values ​​from a set of discrete data.
 #
 
-def MidPoint(set:list):
+def VarValues(set:list):
     aux:list = []
 
     for x in set:
@@ -115,10 +115,10 @@ def MidPoint(set:list):
     return aux
 
 #
-# Calculating the midpoint of classes for large sets.
+# Calculating the midpoint of classes for continuous sets.
 #
 
-def GranMidPoint(classes:list):
+def MidPoints(classes:list):
     aux:list = []
 
     for x in classes:
@@ -154,7 +154,7 @@ def ClassBreadth(fullRange:float, classes:list, simple:bool = False):
 # Function that organizes the data of the class vector.
 #
 
-def OrganizeClass(classes:list):
+def OrganizeSet(classes:list):
     aux:list = []
     for x in range(0, int(len(classes)), 2):
         aux.append([classes[x], classes[x + 1]])
@@ -162,11 +162,11 @@ def OrganizeClass(classes:list):
     return aux
 
 #
-# Calculating the average of a dataset.
+# Calculating the mean of a set of discrete data.
 #
 
 def Mean(set:list):
-    aux:float
+    aux:float = 0.0
     
     for x in set:
         aux += x
@@ -174,7 +174,7 @@ def Mean(set:list):
     return aux / len(set)
 
 #
-# Calculating the mode of a dataset.
+# Calculating the mode of a set of discrete data.
 #
 
 def Mode(set:list):
@@ -189,17 +189,17 @@ def Mode(set:list):
     for x in range(len(aux)):
         if set.count(aux[x]) > highestOccurrence:
             highestOccurrence = set.count(aux[x])
-            mostRepeatingValue[0] = aux[x]
+            mostRepeatingValue.insert(0, aux[x])
 
     for x in range(len(aux)):
         if aux[x] != mostRepeatingValue:
-            if set.count(aux[x]) == highestOccurrence:
+            if set.count(aux[x]) == highestOccurrence and aux[x] != mostRepeatingValue[0]:
                 mostRepeatingValue.append(aux[x])
     
     return mostRepeatingValue
             
 #
-# Calculating the median of a dataset.
+# Calculating the median of a set of discrete data.
 #
 
 def Median(set:list):
@@ -207,7 +207,7 @@ def Median(set:list):
 
     if len(set) % 2 == 0:
         set.sort()
-        aux = set[len(set)] - set[len(set) + 1]
+        aux = set[int(len(set) / 2)] + set[int((len(set) / 2) - 1)]
         aux /= 2
     else:
         set.sort()
@@ -230,10 +230,10 @@ def SampleQtt(set:list, simple: bool = False):
     else:
         return len(set)
 #
-# Arithmetic mean calculation for large data sets.
+# Arithmetic mean calculation for continuous data sets.
 #
 
-def GranMean(midPoint:list, fi:list, sampleQtt:int):
+def ContMean(midPoint:list, fi:list, sampleQtt:int):
     value1:float = 0
     
     for x in range(len(midPoint)):
@@ -242,10 +242,10 @@ def GranMean(midPoint:list, fi:list, sampleQtt:int):
     return round(value1 / sampleQtt, 2)
 
 #
-# Mode calculation for large data sets.
+# Mode calculation for continuous data sets.
 #
     
-def GranMode(classes:list, fi:list, classBreadth:float):
+def ContMode(classes:list, fi:list, classBreadth:float):
     biggerIndex:list = []
     biggerFreq:float = 0.0
     modes:list = []
@@ -277,10 +277,10 @@ def GranMode(classes:list, fi:list, classBreadth:float):
     return modes
 
 #
-# Calculating the median for large data sets.
+# Calculating the median for continuous data sets.
 #
 
-def GranMedian(classes:list, fi:list, fac:list, classBreadth:float):
+def ContMedian(classes:list, fi:list, fac:list, classBreadth:float):
     aux:int = fac[len(fac) - 1]
     medianIndex:int  = 0
     median:float = 0.0
@@ -316,7 +316,7 @@ def GranMedian(classes:list, fi:list, fac:list, classBreadth:float):
 # Calculation of variance.
 #
 
-def Variance(midPoint:list, fi:list, mean:float, sampleQtt:int, simple:bool = False):
+def SPTwo(midPoint:list, fi:list, mean:float, sampleQtt:int, simple:bool = False):
     value1:float = 0
 
     if simple == False:
@@ -334,37 +334,37 @@ def Variance(midPoint:list, fi:list, mean:float, sampleQtt:int, simple:bool = Fa
 # Calculation of standard deviation.
 #
 
-def StandardDeviation(varianceResult:float):
+def SD(varianceResult:float):
     return round(math.sqrt(varianceResult), 2)
 
 #
 # Calculation of the coefficient of variation.
 #
 
-def CoefficientVariation(stanDevResult:float, mean:float):
+def CV(stanDevResult:float, mean:float):
     return round((stanDevResult / mean) * 100, 1)
 
 #
-# General calculation of a large dataset.
+# General calculation of a continuous dataset.
 #
 
-def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
-    classes:list = OrganizeClass(set)
+def GenCalcContinuousSets(set:list, fi:list, printData:bool = False):
+    classes:list = OrganizeSet(set)
     fac = Fac(fi)
     fad = Fad(fi)
     fir = Fir(fi)
     facr = Facr(fir)
     fadr = Fadr(fir)
-    granMidPoint = GranMidPoint(classes)
+    midPoints = MidPoints(classes)
     fullRange = FullRange(classes)
     classBreadth = ClassBreadth(fullRange, classes)
     sampleQtt = SampleQtt(fi)
-    granMean = GranMean(granMidPoint, fi, sampleQtt)
-    granMode = GranMode(classes, fi, classBreadth)
-    granMedian = GranMedian(classes, fi, fac, classBreadth)
-    variance = Variance(granMidPoint, fi, granMean, sampleQtt)
-    standardDeviation = StandardDeviation(variance)
-    coefficientVariation = CoefficientVariation(standardDeviation, granMean)
+    contMean = ContMean(midPoints, fi, sampleQtt)
+    contMode = ContMode(classes, fi, classBreadth)
+    contMedian = ContMedian(classes, fi, fac, classBreadth)
+    variance = SPTwo(midPoints, fi, contMean, sampleQtt)
+    standardDeviation = SD(variance)
+    coefficientVariation = CV(standardDeviation, contMean)
     resultVector:list = []
 
     resultVector.append(classes)
@@ -374,13 +374,13 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
     resultVector.append(fad)
     resultVector.append(facr)
     resultVector.append(fadr)
-    resultVector.append(granMidPoint)
+    resultVector.append(midPoints)
     resultVector.append(fullRange)
     resultVector.append(classBreadth)
     resultVector.append(sampleQtt)
-    resultVector.append(granMean)
-    resultVector.append(granMode)
-    resultVector.append(granMedian)
+    resultVector.append(contMean)
+    resultVector.append(contMode)
+    resultVector.append(contMedian)
     resultVector.append(variance)
     resultVector.append(standardDeviation)
     resultVector.append(coefficientVariation)
@@ -393,13 +393,13 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
         print("Fad: " + str(fad))
         print("Facr: " + str(facr))
         print("Fadr: " + str(fadr))
-        print("Mid points: " + str(granMidPoint))
+        print("Mid points: " + str(midPoints))
         print("Full range: " + str(fullRange))
         print("Class breadth: " + str(classBreadth))
         print("Total samples: " + str(sampleQtt))
-        print("Mean: " + str(granMean))
-        print("Mode: " + str(granMode))
-        print("Median: " + str(granMedian))
+        print("Mean: " + str(contMean))
+        print("Mode: " + str(contMode))
+        print("Median: " + str(contMedian))
         print("Variance: " + str(variance))
         print("Standart deviation: " + str(standardDeviation))
         print("Coefficient variation: " + str(coefficientVariation))
@@ -409,26 +409,26 @@ def GeralCalculationLargeSets(set:list, fi:list, printData:bool = False):
         return resultVector
 
 #
-# General calculation of a small dataset.
+# General calculation of a discrete dataset.
 #
 
-def GeralCalculationSimpleSets(set:list, printData:bool = False):
+def GenCalcDiscreteSets(set:list, printData:bool = False):
     fi = Fi(set)
     fir = Fir(fi)
     fac = Fac(fi)
     fad = Fad(fi)
     facr = Facr(fir)
     fadr = Fadr(fir)
-    midPoint = MidPoint(set)
+    varValues = VarValues(set)
     fullRange = FullRange(set, True)
     classBreadth = ClassBreadth(fullRange, set, True)
     sampleQtt = SampleQtt(fi)
     mean = Mean(set)
     mode = Mode(set)
     median = Median(set)
-    variance = Variance(midPoint, fi, mean, sampleQtt)
-    standardDeviation = StandardDeviation(variance)
-    coefficientVariation = CoefficientVariation(standardDeviation, mean)
+    variance = SPTwo(varValues, fi, mean, sampleQtt, True)
+    standardDeviation = SD(variance)
+    coefficientVariation = CV(standardDeviation, mean)
     resultVector:list = []
 
     resultVector.append(set)
@@ -438,7 +438,7 @@ def GeralCalculationSimpleSets(set:list, printData:bool = False):
     resultVector.append(fad)
     resultVector.append(facr)
     resultVector.append(fadr)
-    resultVector.append(midPoint)
+    resultVector.append(varValues)
     resultVector.append(fullRange)
     resultVector.append(classBreadth)
     resultVector.append(sampleQtt)
@@ -457,7 +457,7 @@ def GeralCalculationSimpleSets(set:list, printData:bool = False):
         print("Fad: " + str(fad))
         print("Facr: " + str(facr))
         print("Fadr: " + str(fadr))
-        print("Mid points: " + str(midPoint))
+        print("Mid points: " + str(varValues))
         print("Full range: " + str(fullRange))
         print("Class breadth: " + str(classBreadth))
         print("Total samples: " + str(sampleQtt))
@@ -471,4 +471,3 @@ def GeralCalculationSimpleSets(set:list, printData:bool = False):
         return resultVector
     else:
         return resultVector
-        
