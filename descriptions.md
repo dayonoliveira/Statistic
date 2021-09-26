@@ -52,7 +52,7 @@ Classes are represented by the _Idades_ column and the data passed in the `set` 
 
 `[18,23,23,28,28,33,33,38,38,43,43,48,48,53]`
 
-So they will be organized by [another function](#organizeclass) and look like this:
+So they will be organized by [another function](#organizeset) and look like this:
 
 `[[18.23],[23.28],[28.33],[33.38],[38.43],[43.48],[48.53]]`
 
@@ -193,7 +193,7 @@ This has the same purpose as the previous function, but it is used for class tab
 
 ### Parameters:
 
-- `classes: list`: Takes a list with already organized class boundaries (See [here](#organizeclass) the function to organize classes) and returns a list with the midpoints of each class.
+- `classes: list`: Takes a list with already organized class boundaries (See [here](#organizeset) the function to organize classes) and returns a list with the midpoints of each class.
 
 ### Return:
 
@@ -205,7 +205,7 @@ Function responsible for calculating the total amplitude of the set of discrete 
 
 ### Parameters:
 
-- `classes: list`: Receives a list with already organized class boundaries (See [here](#organizeclass) the function to organize classes) or a set of discrete data.
+- `classes: list`: Receives a list with already organized class boundaries (See [here](#organizeset) the function to organize classes) or a set of discrete data.
 - `simple: bool` (`False` by default): This parameter dictates whether what will be passed is a set of discrete data (`True`) or a list of class boundaries (`False`).
 
 ### Return:
@@ -219,7 +219,7 @@ Function responsible for calculating the class amplitude of a set of discrete da
 ### Parameters:
 
 - `fullRange: float`: Receives the result of the calculation of the [full range](#fullrange).
-- `classes: list`: Receives the set of discrete data or a list with already organized class boundaries (See [here](#organizeclass) the function to organize the classes).
+- `classes: list`: Receives the set of discrete data or a list with already organized class boundaries (See [here](#organizeset) the function to organize the classes).
 - `simple: bool` (`False` by default): Dictates whether the previous parameter will be a discrete data set (`True`) or a list with class boundaries (`False`).
 
 ### Return:
@@ -289,7 +289,7 @@ This function calculates the average of a continuous data set (class table).
 
 ### Parameters:
 
-- `midPoint: list`: Gets the list with the midpoints of the class table calculated in [in this function](#granmidpoint).
+- `midPoint: list`: Gets the list with the midpoints of the class table calculated in [in this function](#midpoints).
 - `fi: list`: Gets the list with the absolute frequencies from the class table.
 - `sampleQtt: int`: Receives the number of samples from the calculated class table [in this function](#sampleqtt).
 
@@ -305,7 +305,7 @@ Function that calculates the mode of a continuous data set (class table).
 
 ### Parameters:
 
-- `classes: list`: Gets a list with organized class boundaries (See [here](#organizeclass) the function to organize classes).
+- `classes: list`: Gets a list with organized class boundaries (See [here](#organizeset) the function to organize classes).
 - `fi: list`: Receives a list of absolute frequencies from the class table.
 - `classBreadth: float`: Receives the result of calculating the [class breadth](#classbreadth).
 
@@ -321,7 +321,7 @@ Function that calculates the median of a continuous data set (class table).
 
 ### Parameters:
 
-- `classes: list`: Gets the list with the organized class boundaries (See [here](#organizeclass) the function to organize the classes).
+- `classes: list`: Gets the list with the organized class boundaries (See [here](#organizeset) the function to organize the classes).
 - `fi: list`: Here the list with the absolute frequencies of the class table is passed.
 - `fac: list`: Here the list with the accumulated frequencies of the class table is passed.
 - `classBreadth`: Receives the result of calculating the [class breadth](#classbreadth).

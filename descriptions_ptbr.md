@@ -52,7 +52,7 @@ As classes são representadas pela coluna Idades e os dados passados no parâmet
 
 `[18,23,23,28,28,33,33,38,38,43,43,48,48,53]`
 
-Assim eles serão organizados por uma [outra função](#organizeclass) e ficarão assim:
+Assim eles serão organizados por uma [outra função](#organizeset) e ficarão assim:
 
 `[[18,23],[23,28],[28,33],[33,38],[38,43],[43,48],[48,53]]`
 
@@ -193,7 +193,7 @@ Esta tem o mesmo propósito da função anterior, porém é usada para tabela de
 
 ### Parâmetros:
 
-- `classes: list`: Recebe uma lista com os limites das classes já organizados (Veja [aqui](#organizeclass) a função para organizar as classes) e retorna uma lista com os pontos médios de cada classe.
+- `classes: list`: Recebe uma lista com os limites das classes já organizados (Veja [aqui](#organizeset) a função para organizar as classes) e retorna uma lista com os pontos médios de cada classe.
 
 ### Return:
 
@@ -205,7 +205,7 @@ Função responsável por calcular a amplitude total do conjunto de dados discre
 
 ### Parâmetros:
 
-- `classes: list`: Recebe uma lista com os limites das classes já organizados (Veja [aqui](#organizeclass) a função para organizar as classes) ou um conjunto de dados discretos.
+- `classes: list`: Recebe uma lista com os limites das classes já organizados (Veja [aqui](#organizeset) a função para organizar as classes) ou um conjunto de dados discretos.
 - `simple: bool` (`False` por padrão): Este parâmetro é quem dita se o que vai ser passado é um conjunto de dados discretos (`True`) ou uma lista com os limites das classes (`False`).
 
 ### Return:
@@ -219,7 +219,7 @@ Função responsável por calcular a amplitude de classe de um conjunto de dados
 ### Parâmetros:
 
 - `fullRange: float`: Recebe o resultado do cálculo da [amplitude total](#fullrange).
-- `classes: list`: Recebe o conjunto de dados discretos ou uma lista com os limites das classes já organizados (Veja [aqui](#organizeclass) a função para organizar as classes).
+- `classes: list`: Recebe o conjunto de dados discretos ou uma lista com os limites das classes já organizados (Veja [aqui](#organizeset) a função para organizar as classes).
 - `simple: bool` (`False` por padrão): Dita se o parâmetro anterior vai ser um conjunto de dados discretos (`True`) ou uma lista com os limites das classes (`False`).
 
 ### Return:
@@ -289,7 +289,7 @@ Esta função calcula a média de um conjunto de dados contínuos (tabela de cla
 
 ### Parâmetros:
 
-- `midPoint: list`: Recebe a lista com os pontos médios da tabela de classes calculado na [nessa função](#granmidpoint).
+- `midPoint: list`: Recebe a lista com os pontos médios da tabela de classes calculado na [nessa função](#midpoints).
 - `fi: list`: Recebe a lista com as frequências absolutas da tabela de classes.
 - `sampleQtt: int`: Recebe a quantidade de amostras da tabela de classes calculada [nesta função](#sampleqtt).
 
@@ -305,7 +305,7 @@ Função que calcula a moda de um conjunto de dados contínuos (tabela de classe
 
 ### Parâmetros:
 
-- `classes: list`: Recebe uma lista com os limites de classes organizados (Veja [aqui](#organizeclass) a função para organizar as classes).
+- `classes: list`: Recebe uma lista com os limites de classes organizados (Veja [aqui](#organizeset) a função para organizar as classes).
 - `fi: list`: Recebe uma lista com as frequências absolutas da tabela de classes. 
 - `classBreadth: float`: Recebe o resultado do cálculo da [amplitude de classe](#classbreadth).
 
@@ -321,7 +321,7 @@ Função que calcula a mediana de um conjunto de dados contínuos (tabela de cla
 
 ### Parâmetros:
 
-- `classes: list`: Recebe a lista com os limites das classes organizados (Veja [aqui](#organizeclass) a função para organizar as classes).
+- `classes: list`: Recebe a lista com os limites das classes organizados (Veja [aqui](#organizeset) a função para organizar as classes).
 - `fi: list`: Aqui é passado a lista com as frequências absolutas da tabela de classes.
 - `fac: list`: Aqui é passado a lista com as frequências acumuladas da tabela de classes.
 - `classBreadth`: Recebe o resultado do cálculo da [amplitude de classe](#classbreadth).
