@@ -4,32 +4,32 @@ English | [Portuguese](descriptions_ptbr.md)
 
 ### Summary
 
-  - [`GeneralCalculationContinuousSets`](#generalcalculationcontinuoussets)
-  - [`GeneralCalculationDiscreteSets`](#generalcalculationdiscretesets)
-  - [`OrganizeClass`](#organizeclass)
+  - [`GenCalcContinuousSets`](#gencalccontinuoussets)
+  - [`GenCalcDiscreteSets`](#gencalcdiscretesets)
+  - [`OrganizeSet`](#organizeset)
   - [`Fi`](#fi)
   - [`Fir`](#fir)
   - [`Fac`](#fac)
   - [`Fad`](#fad)
   - [`Facr`](#facr)
   - [`Fadr`](#fadr)
-  - [`MidPoint`](#midpoint)
-  - [`GranMidPoint`](#granmidpoint)
+  - [`VarValues`](#varvalues)
+  - [`MidPoints`](#midpoints)
   - [`FullRange`](#fullrange)
   - [`ClassBreadth`](#classbreadth)
   - [`Mean`](#mean)
   - [`Mode`](#mode)
   - [`Median`](#median)
   - [`SampleQtt`](#sampleqtt)
-  - [`GranMean`](#granmean)
-  - [`GranMode`](#granmode)
-  - [`GranMedian`](#granmedian)
-  - [`Variance`](#variance)
-  - [`StandardDeviation`](#standarddeviation)
-  - [`CoefficientVariation`](#coefficientvariation)
+  - [`ContMean`](#contmean)
+  - [`ContMode`](#contmode)
+  - [`ContMedian`](#contmedian)
+  - [`SPTwo`](#sptwo)
+  - [`SD`](#sd)
+  - [`CV`](#cv)
 
 
-## `GeneralCalculationContinuousSets`
+## `GenCalcContinuousSets`
 
 This function does all possible library calculations for continuous datasets, large or small, and returns all values ​​in a list. You can choose whether or not to print the results in the output.
 
@@ -56,7 +56,7 @@ So they will be organized by [another function](#organizeclass) and look like th
 
 `[[18.23],[23.28],[28.33],[33.38],[38.43],[43.48],[48.53]]`
 
-## `GeneralCalculationDiscreteSets`
+## `GenCalcDiscreteSets`
 
 This function has the same purpose as the previous one, but its focus is on discrete data sets, large or small. It is also possible to choose whether the function will print the data when it is executed.
 
@@ -76,7 +76,7 @@ Discrete dataset example:
 
 The data that will be passed in the `set` parameter are all the ones in the image above. They would be inside a vector just like the previous function.
 
-## `OrganizeClass`
+## `OrganizeSet`
 
 This function has the purpose of organizing the data referring to the class table. It takes a normal list of limits and returns a list of organized classes.
 
@@ -171,7 +171,7 @@ It has the same purpose as the previous function, but the calculation of the acc
 
 - `aux: list`: Returns a list of relative frequencies accumulated in decreasing order.
 
-## `MidPoint`
+## `VarValues`
 
 This function collects the midpoints (variable values) of a set of discrete data.
 
@@ -185,7 +185,7 @@ This function collects the midpoints (variable values) of a set of discrete data
 
 - `aux: list`: Returns a list of the midpoints (variable values) of the discrete data set.
 
-## `GranMidPoint`
+## `MidPoints`
 
 This has the same purpose as the previous function, but it is used for class table (continuous dataset).
 
@@ -281,7 +281,7 @@ Function that calculates total samples based on the absolute frequency of a clas
 
 - `#: int`: Returns the number of samples from a set of discrete or continuous data.
 
-## `GranMean`
+## `ContMean`
 
 This function calculates the average of a continuous data set (class table).
 
@@ -297,7 +297,7 @@ This function calculates the average of a continuous data set (class table).
 
 - `</>: float`: Returns the result of a calculation to find the average of the continuous data set.
 
-## `GranMode`
+## `ContMode`
 
 Function that calculates the mode of a continuous data set (class table).
 
@@ -313,7 +313,7 @@ Function that calculates the mode of a continuous data set (class table).
 
 - `modes: list`: Returns a list of all modes from the continuous dataset.
 
-## `GranMedian`
+## `ContMedian`
 
 Function that calculates the median of a continuous data set (class table).
 
@@ -330,7 +330,7 @@ Function that calculates the median of a continuous data set (class table).
 
 - `median: float`: Returns the median of a continuous data set.
 
-## `Variance`
+## `SPTwo`
 
 This function calculates the variance of discrete and continuous data sets.
 
@@ -346,7 +346,7 @@ This function calculates the variance of discrete and continuous data sets.
 
 - `</>: float`: Returns the result of a calculation to find the variance of a set of discrete or continuous data.
 
-## `StandardDeviation`
+## `SD`
 
 This function calculates the standard deviation of the discrete dataset or class table.
 
@@ -358,7 +358,7 @@ This function calculates the standard deviation of the discrete dataset or class
 
 - `</>: float`: Returns the result of a calculation to find the standard deviation of a set of discrete or continuous data.
 
-## `CoefficientVariation`
+## `CV`
 
 This function calculates the coefficient of variation of a discrete dataset or class table.
 

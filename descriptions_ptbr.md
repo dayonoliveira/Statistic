@@ -4,32 +4,32 @@
 
 ### Sumário
 
-  - [`GeneralCalculationContinuousSets`](#generalcalculationcontinuoussets)
-  - [`GeneralCalculationDiscreteSets`](#generalcalculationdiscretesets)
-  - [`OrganizeClass`](#organizeclass)
+  - [`GenCalcContinuousSets`](#gencalccontinuoussets)
+  - [`GenCalcDiscreteSets`](#gencalcdiscretesets)
+  - [`OrganizeSet`](#organizeset)
   - [`Fi`](#fi)
   - [`Fir`](#fir)
   - [`Fac`](#fac)
   - [`Fad`](#fad)
   - [`Facr`](#facr)
   - [`Fadr`](#fadr)
-  - [`MidPoint`](#midpoint)
-  - [`GranMidPoint`](#granmidpoint)
+  - [`VarValues`](#varvalues)
+  - [`MidPoints`](#midpoints)
   - [`FullRange`](#fullrange)
   - [`ClassBreadth`](#classbreadth)
   - [`Mean`](#mean)
   - [`Mode`](#mode)
   - [`Median`](#median)
   - [`SampleQtt`](#sampleqtt)
-  - [`GranMean`](#granmean)
-  - [`GranMode`](#granmode)
-  - [`GranMedian`](#granmedian)
-  - [`Variance`](#variance)
-  - [`StandardDeviation`](#standarddeviation)
-  - [`CoefficientVariation`](#coefficientvariation)
+  - [`ContMean`](#contmean)
+  - [`ContMode`](#contmode)
+  - [`ContMedian`](#contmedian)
+  - [`SPTwo`](#sptwo)
+  - [`SD`](#sd)
+  - [`CV`](#cv)
 
 
-## `GeneralCalculationContinuousSets`
+## `GenCalcContinuousSets`
 
 Esta função faz todos os cálculos possíveis da biblioteca voltados para conjuntos de dados contínuos, grandes ou pequenos, e retorna todos os valores em uma lista. É possível escolher se quer ou não imprimir os resultados na saída de dados.
 
@@ -56,7 +56,7 @@ Assim eles serão organizados por uma [outra função](#organizeclass) e ficarã
 
 `[[18,23],[23,28],[28,33],[33,38],[38,43],[43,48],[48,53]]`
 
-## `GeneralCalculationDiscreteSets`
+## `GenCalcDiscreteSets`
 
 Esta função tem o mesmo propósito da anterior, porém o foco dela é para conjuntos de dados discretos, grandes ou pequenos. Também é possível escolher se a função vai imprimir os dados quando for executada.
 
@@ -76,7 +76,7 @@ Exemplo de conjunto de dados discreto:
 
 Os dados que serão passados no parâmetro `set` são todos os da imagem acima. Eles ficariam dentro de um vetor assim como o da função anterior.
 
-## `OrganizeClass`
+## `OrganizeSet`
 
 Esta função tem o propósito de organizar os dados referentes à tabela de classes. Ela recebe uma lista normal com os limites e retorna uma lista com as classes organizadas.
 
@@ -171,7 +171,7 @@ Tem o mesmo propósito da função anterior, mas o cálculo das frequências rel
 
 - `aux: list`: Retorna uma lista com as frequências relativas acumuladas de forma decrescente.
 
-## `MidPoint`
+## `VarValues`
 
 Esta função faz a coleta dos pontos médios (valores da variável) de um conjunto de dados discretos.
 
@@ -185,7 +185,7 @@ Esta função faz a coleta dos pontos médios (valores da variável) de um conju
 
 - `aux: list`: Retorna uma lista com os pontos médios (valores da variável) do conjunto de dados discretos.
 
-## `GranMidPoint`
+## `MidPoints`
 
 Esta tem o mesmo propósito da função anterior, porém é usada para tabela de classes (conjunto de dados contínuos).
 
@@ -281,7 +281,7 @@ Função que calcula o total de amostras com base na frequência absoluta de uma
 
 - `#: int`: Retorna a quantidade de amostras de um conjunto de dados discretos ou contínuos.
 
-## `GranMean`
+## `ContMean`
 
 Esta função calcula a média de um conjunto de dados contínuos (tabela de classes).
 
@@ -297,7 +297,7 @@ Esta função calcula a média de um conjunto de dados contínuos (tabela de cla
 
 - `</>: float`: Retorna o resultado de um cálculo para encontrar a média do conjunto de dados contínuos.
 
-## `GranMode`
+## `ContMode`
 
 Função que calcula a moda de um conjunto de dados contínuos (tabela de classes).
 
@@ -313,7 +313,7 @@ Função que calcula a moda de um conjunto de dados contínuos (tabela de classe
 
 - `modes: list`: Retorna uma lista com todas as modas do conjunto de dados contínuos.
 
-## `GranMedian`
+## `ContMedian`
 
 Função que calcula a mediana de um conjunto de dados contínuos (tabela de classes).
 
@@ -330,7 +330,7 @@ Função que calcula a mediana de um conjunto de dados contínuos (tabela de cla
 
 - `median: float`: Retorna a mediana de um conjunto de dados contínuos.
 
-## `Variance`
+## `SPTwo`
 
 Esta função calcula a variância de conjuntos de dados discretos e contínuos.
 
@@ -346,7 +346,7 @@ Esta função calcula a variância de conjuntos de dados discretos e contínuos.
 
 - `</>: float`: Retorna o resultado de um cálculo para encontrar a variância de um conjunto de dados discretos ou contínuos.
 
-## `StandardDeviation`
+## `SD`
 
 Esta função calcula o desvio padrão do conjunto de dados discreto ou da tabela de classes.
 
@@ -358,7 +358,7 @@ Esta função calcula o desvio padrão do conjunto de dados discreto ou da tabel
 
 - `</>: float`: Retorna o resultado de um cálculo para encontrar o desvio padrão de um conjunto de dados discretos ou contínuos.
 
-## `CoefficientVariation`
+## `CV`
 
 Esta função calcula o coeficiente de variação de um conjunto de dados discreto ou da tabela de classes.
 
