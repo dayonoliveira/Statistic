@@ -39,6 +39,11 @@ Esta função faz todos os cálculos possíveis da biblioteca voltados para conj
 - `fi: list`: Frequência absoluta (simples) do conjunto de dados.
 - `printData: bool` (opcional): Este é responsável por ditar se a função irá imprimir ou não os resultados. Por padrão ele é setado como `False`.
 
+### Return:
+
+- `resultVector: list`: Retorna uma lista com todos os resultados de todos os cálculos possíveis da biblioteca.
+- `print` (Opcional): Há a possibilidade de imprimir os resultados após os cálculos.
+
 Exemplo de uma tabela de classes:
 
 <img alt="Tabela de classes" src="img/tabela-de-classes.png">
@@ -60,6 +65,11 @@ Esta função tem o mesmo propósito da anterior, porém o foco dela é para con
 - `set: list`: Aqui é onde vai o conjunto de dados. Diferente da função anterior, esta não recebe dados da tabela de classes.
 - `printData: bool` (opcional): Este é responsável por ditar se a função irá imprimir ou não os resultados. Por padrão ele é setado como `False`.
 
+### Return:
+
+- `resultVector: list`: Retorna uma lista com os resultados de todos os cálculos possíveis da biblioteca.
+- `print`: Há também a possibilidade de imprimir os resultados após todos os cálculos.
+
 Exemplo de conjunto de dados discreto:
 
 <img alt="Conjunto de dados discretos" src="img/conjunto-de-dados-discreto.png">
@@ -73,6 +83,10 @@ Esta função tem o propósito de organizar os dados referentes à tabela de cla
 ### Parâmetros:
 
 - `classes: list`: Recebe um vetor com os limites das classes da tabela de classes.
+
+### Return:
+
+- `aux: list`: Retorna uma lista com as classes organizadas em pequenos vetores dentro da lista, semelhante a uma tabela de classes.
 
 Valor recebido:
 
@@ -93,6 +107,10 @@ Nesta função é calculada a frequência absoluta (simples) de um conjunto de d
 - `set: list`: Aqui é inserido o conjunto de dados bruto. Tem que ser passado em forma de `list`.
 - `respectiveValues: bool`: Esta opção permite fazer a alternancia entre o retorno de dados, possibilitando retornar um vetor com apenas as frequências absolutas (`False` por padrão) ou os valores com suas respectivas frequências (`True`).
 
+### Return:
+
+- `freq: list`: Retorna uma lista com apenas as frequências absolutas, ou uma lista com as frequências e seus respectivos valores.
+
 ## `Fir`
 
 Função que calcula a frequência relativa do conjunto de dados discretos ou das classes, com base na frequência absoluta. O retorno é uma lista com números do tipo `float`.
@@ -100,6 +118,10 @@ Função que calcula a frequência relativa do conjunto de dados discretos ou da
 ### Parâmetros:
 
 - `fi: list`: Recebe a frequência absoluta do conjunto de dados discretos ou do conjunto de dados contínuos.
+
+### Return:
+
+- `aux: list`: Retorna uma lista com as frequências relativas do conjunto de dados.
 
 ## `Fac`
 
@@ -109,6 +131,10 @@ Esta é a função para calcular as frequências acumuladas de forma crescente. 
 
 - `fi: list`: Assim como a função anterior, ela recebe a lista com as frequências absolutas do conjunto de dados discretos ou contínuos.
 
+### Return:
+
+- `aux: list`: Retorna uma lista com as frequências acumuladas de forma crescente.
+
 ## `Fad`
 
 Assim como a função de cálculo de frequências acumuladas, esta também tem esse propósito, mas de forma decrescente.
@@ -116,6 +142,10 @@ Assim como a função de cálculo de frequências acumuladas, esta também tem e
 ### Parâmetros:
 
 - `fi: list`: Recebe a lista de frequências absolutas do conjunto de dados discretos ou contínuos.
+
+### Return:
+
+- `aux: list`: Retorna uma lista com as frequências acumuladas de forma decrescente.
 
 ## `Facr`
 
@@ -125,6 +155,10 @@ Esta função faz o cálculo das frequências relativas acumuladas de forma cres
 
 - `fir: list`: É recebida a lista de frequências relativas do conjunto de dados discretos ou contínuos.
 
+### Return:
+
+- `aux: list`: Retorna uma lista com as frequências relativas acumuladas de forma crescente.
+
 ## `Fadr`
 
 Tem o mesmo propósito da função anterior, mas o cálculo das frequências relativas acumuladas é de forma decrescente.
@@ -132,6 +166,10 @@ Tem o mesmo propósito da função anterior, mas o cálculo das frequências rel
 ### Parâmetros:
 
 - `fir: list`: Aqui é passado a lista de frequências relativas do conjunto de dados discretos ou contínuos.
+
+### Return:
+
+- `aux: list`: Retorna uma lista com as frequências relativas acumuladas de forma decrescente.
 
 ## `MidPoint`
 
@@ -143,6 +181,10 @@ Esta função faz a coleta dos pontos médios (valores da variável) de um conju
 
 - `set: list`: Recebe uma lista com o conjunto de dados discretos.
 
+### Return:
+
+- `aux: list`: Retorna uma lista com os pontos médios (valores da variável) do conjunto de dados discretos.
+
 ## `GranMidPoint`
 
 Esta tem o mesmo propósito da função anterior, porém é usada para tabela de classes (conjunto de dados contínuos).
@@ -153,6 +195,10 @@ Esta tem o mesmo propósito da função anterior, porém é usada para tabela de
 
 - `classes: list`: Recebe uma lista com os limites das classes já organizados (Veja [aqui](#organizeclass) a função para organizar as classes) e retorna uma lista com os pontos médios de cada classe.
 
+### Return:
+
+- `aux: list`: Retorna uma lista com os pontos médios do conjunto de dados contínuos.
+
 ## `FullRange`
 
 Função responsável por calcular a amplitude total do conjunto de dados discretos ou das classes de um conjunto de dados contínuos.
@@ -161,6 +207,10 @@ Função responsável por calcular a amplitude total do conjunto de dados discre
 
 - `classes: list`: Recebe uma lista com os limites das classes já organizados (Veja [aqui](#organizeclass) a função para organizar as classes) ou um conjunto de dados discretos.
 - `simple: bool` (`False` por padrão): Este parâmetro é quem dita se o que vai ser passado é um conjunto de dados discretos (`True`) ou uma lista com os limites das classes (`False`).
+
+### Return:
+
+- `</>: float`: Retorna um resultado de um cálculo para encontrar a amplitude total.
 
 ## `ClassBreadth`
 
@@ -172,6 +222,10 @@ Função responsável por calcular a amplitude de classe de um conjunto de dados
 - `classes: list`: Recebe o conjunto de dados discretos ou uma lista com os limites das classes já organizados (Veja [aqui](#organizeclass) a função para organizar as classes).
 - `simple: bool` (`False` por padrão): Dita se o parâmetro anterior vai ser um conjunto de dados discretos (`True`) ou uma lista com os limites das classes (`False`).
 
+### Return:
+
+- `</>: float`: Retorna o resultado de um cálculo para encontrar a amplitude de classe.
+
 ## `Mean`
 
 Função que calcula a média de um conjunto de dados discretos.
@@ -181,6 +235,10 @@ Função que calcula a média de um conjunto de dados discretos.
 ### Parâmetros:
 
 - `set: list`: Recebe a lista com os dados do conjunto.
+
+### Return:
+
+- `aux: float`: Retorna a média de um conjunto de dados discretos.
 
 ## `Mode`
 
@@ -192,6 +250,10 @@ Função que calcula a moda de um conjunto de dados discretos.
 
 - `set: list`: Recebe a lista dos dados do conjunto de dados.
 
+### Return:
+
+- `mostRepeatingValue: list`: Retorna uma lista com todas as modas de um conjunto de dados discretos.
+
 ## `Median`
 
 Função que calcula a mediana de um conjunto de dados discretos.
@@ -202,6 +264,10 @@ Função que calcula a mediana de um conjunto de dados discretos.
 
 - `set: list`: Recebe a lista com os dados do conjunto de dados.
 
+### Return:
+
+- `aux: float`: Retorna a mediana de um conjunto de dados discretos.
+
 ## `SampleQtt`
 
 Função que calcula o total de amostras com base na frequência absoluta de uma tabela de classes ou no tamanho de um conjunto de dados discretos.
@@ -210,6 +276,10 @@ Função que calcula o total de amostras com base na frequência absoluta de uma
 
 - `set: list`: Recebe o conjunto de dados discretos ou a lista das frequências absolutas da tabela de classes.
 - `simple: bool` (`False` por padrão): Dita se o que vai ser recebido no parâmetro anterior é um conjunto de dados discretos (`True`) ou a lista das frequências absolutas da tabela de classes (`False`).
+
+### Return:
+
+- `#: int`: Retorna a quantidade de amostras de um conjunto de dados discretos ou contínuos.
 
 ## `GranMean`
 
@@ -223,6 +293,10 @@ Esta função calcula a média de um conjunto de dados contínuos (tabela de cla
 - `fi: list`: Recebe a lista com as frequências absolutas da tabela de classes.
 - `sampleQtt: int`: Recebe a quantidade de amostras da tabela de classes calculada [nesta função](#sampleqtt).
 
+### Return:
+
+- `</>: float`: Retorna o resultado de um cálculo para encontrar a média do conjunto de dados contínuos.
+
 ## `GranMode`
 
 Função que calcula a moda de um conjunto de dados contínuos (tabela de classes).
@@ -234,6 +308,10 @@ Função que calcula a moda de um conjunto de dados contínuos (tabela de classe
 - `classes: list`: Recebe uma lista com os limites de classes organizados (Veja [aqui](#organizeclass) a função para organizar as classes).
 - `fi: list`: Recebe uma lista com as frequências absolutas da tabela de classes. 
 - `classBreadth: float`: Recebe o resultado do cálculo da [amplitude de classe](#classbreadth).
+
+### Return:
+
+- `modes: list`: Retorna uma lista com todas as modas do conjunto de dados contínuos.
 
 ## `GranMedian`
 
@@ -248,6 +326,10 @@ Função que calcula a mediana de um conjunto de dados contínuos (tabela de cla
 - `fac: list`: Aqui é passado a lista com as frequências acumuladas da tabela de classes.
 - `classBreadth`: Recebe o resultado do cálculo da [amplitude de classe](#classbreadth).
 
+### Return:
+
+- `median: float`: Retorna a mediana de um conjunto de dados contínuos.
+
 ## `Variance`
 
 Esta função calcula a variância de conjuntos de dados discretos e contínuos.
@@ -260,6 +342,10 @@ Esta função calcula a variância de conjuntos de dados discretos e contínuos.
 - `sampleQtt: int`: Aqui é passado o total de amostras do conjunto de dados discretos ou da tabela de classes.
 - `simple: bool` (`False` por padrão): Este parâmetro define se o cálculo será para um conjunto de dados discreto ou contínuo.
 
+### Return:
+
+- `</>: float`: Retorna o resultado de um cálculo para encontrar a variância de um conjunto de dados discretos ou contínuos.
+
 ## `StandardDeviation`
 
 Esta função calcula o desvio padrão do conjunto de dados discreto ou da tabela de classes.
@@ -267,6 +353,10 @@ Esta função calcula o desvio padrão do conjunto de dados discreto ou da tabel
 ### Parâmetros:
 
 - `varianceResult: float`: Recebe o resultado do cálculo da variância.
+
+### Return:
+
+- `</>: float`: Retorna o resultado de um cálculo para encontrar o desvio padrão de um conjunto de dados discretos ou contínuos.
 
 ## `CoefficientVariation`
 
@@ -277,4 +367,6 @@ Esta função calcula o coeficiente de variação de um conjunto de dados discre
 - `stanDevResult: float`: Recebe o resultado do cálculo do desvio padrão.
 - `mean: float`: Recebe a média do conjunto de dados discreto ou da tabela de classes.
 
+### Return:
 
+- `</>: float`: Retorna o resultado de um cálculo para encontrar o coeficiente de variação de um conjunto de dados discretos ou contínuos.
