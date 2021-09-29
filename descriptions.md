@@ -2,6 +2,29 @@ English | [Portuguese](descriptions_ptbr.md)
 
 # Descriptions
 
+## Introduction
+
+This file aims to clarify the functioning of each function in the library, so that the developer can solve all your doubts. If you have read the document and still do not understand something or have encountered a problem, please open a new [issue](https://github.com/dayonoliveira/Statistic/issues) reporting the problem or question.
+
+In each function you will have examples of how they work. The examples will be based on two sets of data, taken from a list of exercises in the Quantitative Methods in Computing course, from the Computer Science course at the University of Fortaleza.
+
+1. discrete dataset:
+    - Image of the set - Question 8:
+        
+        ![Question 8](img/questao-8.png)
+        
+    - List of set:
+        - `[1,3,-2,2,4,2,5,-2,4,3]`
+2. Continuous dataset:
+    - Image of the set (class table) - Question 9:
+        
+        ![Question 9](img/questao-9.png)
+        
+    - Class list (unorganized):
+        - `[50,60,60,70,70,80,80,90,90,100]`
+    - List of absolute frequencies:
+        - `[2,15,50,10,3]`
+
 ### Summary
 
   - [`GenCalcContinuousSets`](#gencalccontinuoussets)
@@ -44,17 +67,35 @@ This function does all possible library calculations for continuous datasets, la
 - `resultVector: list`: Returns a list with all the results of all possible calculations from the library.
 - `print` (Optional): There is the possibility to print the results after calculations.
 
-Example of a class table:
+### Example:
 
-<img alt="Class table" src="img/tabela-de-classes.png">
+```python
+gen_contSet:list = GenCalcContinuousSets(
+  [50,60,60,70,70,80,80,90,90,100],
+  [2,15,50,10,3],
+  True
+)
+```
 
-Classes are represented by the _Idades_ column and the data passed in the `set` parameter will look like this:
-
-`[18,23,23,28,28,33,33,38,38,43,43,48,48,53]`
-
-So they will be organized by [another function](#organizeset) and look like this:
-
-`[[18.23],[23.28],[28.33],[33.38],[38.43],[43.48],[48.53]]`
+```bash
+Classes: [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]]
+Fi: [2, 15, 50, 10, 3]
+Fir: [0.025, 0.1875, 0.625, 0.125, 0.0375]
+Fac: [2, 17, 67, 77, 80]
+Fad: [80, 78, 63, 13, 3]
+Facr: [0.025, 0.2125, 0.8375, 0.9625, 1.0]
+Fadr: [1.0, 0.975, 0.7875, 0.1625, 0.0375]
+Mid points: [55.0, 65.0, 75.0, 85.0, 95.0]
+Full range: 50.0
+Class breadth: 10.0
+Total samples: 80
+Mean: 74.62
+Mode: [74.67]
+Median: 74.6
+Variance: 56.82
+Standart deviation: 7.54
+Coefficient variation: 10.1
+```
 
 ## `GenCalcDiscreteSets`
 
@@ -70,11 +111,34 @@ This function has the same purpose as the previous one, but its focus is on disc
 - `resultVector: list`: Returns a list with the results of all possible calculations from the library.
 - `print`: There is also the possibility to print the results after all calculations.
 
-Discrete dataset example:
+### Example:
 
-<img alt="Discrete dataset" src="img/conjunto-de-dados-discreto.png">
+```python
+gen_discSet:list = GenCalcDiscreteSets(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  True
+)
+```
 
-The data that will be passed in the `set` parameter are all the ones in the image above. They would be inside a vector just like the previous function.
+```bash
+Set: [-2, -2, 1, 2, 2, 3, 3, 4, 4, 5]
+Fi: [1, 2, 2, 2, 2, 1]
+Fir: [0.1, 0.2, 0.2, 0.2, 0.2, 0.1]
+Fac: [1, 3, 5, 7, 9, 10]
+Fad: [10, 9, 7, 5, 3, 1]
+Facr: [0.1, 0.30000000000000004, 0.5, 0.7, 0.8999999999999999, 0.9999999999999999]
+Fadr: [0.9999999999999999, 0.8999999999999999, 0.7, 0.5, 0.30000000000000004, 0.1]
+Mid points: [1, 3, -2, 2, 4, 5]
+Full range: 7.0
+Class breadth: 1.4
+Total samples: 10
+Mean: 2.0
+Mode: [-2, 2, 3, 4]
+Median: 2.5
+Variance: 3.44
+Standart deviation: 1.85
+Coefficient variation: 92.5
+```
 
 ## `OrganizeSet`
 
@@ -88,15 +152,20 @@ This function has the purpose of organizing the data referring to the class tabl
 
 - `aux: list`: Returns a list of classes arranged in small vectors within the list, similar to a class table.
 
-Amount received:
-
-`[18,23,23,28,28,33,33,38,38,43,43,48,48,53]`
-
-Return Value:
-
-`[[18.23],[23.28],[28.33],[33.38],[38.43],[43.48],[48.53]]`
-
 > Warning: It is only for the purpose of transforming a boundary vector into a class vector. If you pass a set of discrete data it will not return a correct value for your purpose.
+
+### Example:
+
+```python
+organized_classes:list = OrganizeSet(
+  [50,60,60,70,70,80,80,90,90,100]
+)
+print(organized_classes)
+```
+
+```bash
+[[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]]
+```
 
 ## `Fi`
 
@@ -111,6 +180,28 @@ This function calculates the absolute (simple) frequency of a set of discrete da
 
 - `freq: list`: Returns a list with only absolute frequencies, or a list of frequencies and their respective values.
 
+### Examples:
+
+Standard form:
+```python
+fi:list = Fi([1,3,-2,2,4,2,5,-2,4,3])
+print(fi)
+```
+
+```bash
+[1, 2, 2, 2, 2, 1]
+```
+
+Form with the respective values:
+```python
+fi:list = Fi([1,3,-2,2,4,2,5,-2,4,3], True)
+print(fi)
+```
+
+```bash
+[[1, 1], [3, 2], [-2, 2], [2, 2], [4, 2], [5, 1]]
+```
+
 ## `Fir`
 
 Function that calculates the relative frequency of the discrete dataset or classes, based on the absolute frequency. The return is a list of numbers like `float`.
@@ -122,6 +213,28 @@ Function that calculates the relative frequency of the discrete dataset or class
 ### Return:
 
 - `aux: list`: Returns a list of the relative frequencies of the dataset.
+
+### Examples:
+
+Continuous dataset:
+```python
+fir:list = Fir([2,15,50,10,3])
+print(fir)
+```
+
+```bash
+[0.025, 0.1875, 0.625, 0.125, 0.0375]
+```
+
+Discrete dataset:
+```python
+fir:list = Fir([1, 2, 2, 2, 2, 1])
+print(fir)
+```
+
+```bash
+[0.1, 0.2, 0.2, 0.2, 0.2, 0.1]
+```
 
 ## `Fac`
 
@@ -135,6 +248,28 @@ This is the function to calculate the accumulated frequencies in an increasing w
 
 - `aux: list`: Returns a list of increasing frequencies accumulated.
 
+### Examples:
+
+Continuous dataset:
+```python
+fac:list = Fac([2,15,50,10,3])
+print(fac)
+```
+
+```bash
+[2, 17, 67, 77, 80]
+```
+
+Discrete dataset:
+```python
+fac:list = Fac([1, 2, 2, 2, 2, 1])
+print(fac)
+```
+
+```bash
+[1, 3, 5, 7, 9, 10]
+```
+
 ## `Fad`
 
 As well as the function for calculating accumulated frequencies, this one also serves this purpose, but in a decreasing manner.
@@ -146,6 +281,28 @@ As well as the function for calculating accumulated frequencies, this one also s
 ### Return:
 
 - `aux: list`: Returns a list of accumulated frequencies in decreasing order.
+
+### Examples:
+
+Continuous dataset:
+```python
+fad:list = Fad([2,15,50,10,3])
+print(fad)
+```
+
+```bash
+[80, 78, 63, 13, 3]
+```
+
+Discrete dataset:
+```python
+fad:list = Fad([1, 2, 2, 2, 2, 1])
+print(fad)
+```
+
+```bash
+[10, 9, 7, 5, 3, 1]
+```
 
 ## `Facr`
 
@@ -159,6 +316,28 @@ This function calculates the accumulated relative frequencies in an increasing w
 
 - `aux: list`: Returns a list of increasing relative frequencies.
 
+### Examples:
+
+Continuous dataset:
+```python
+facr:list = Facr([0.025, 0.1875, 0.625, 0.125, 0.0375])
+print(facr)
+```
+
+```bash
+[0.025, 0.2125, 0.8375, 0.9625, 1.0]
+```
+
+Discrete dataset:
+```python
+facr:list = Facr([0.1, 0.2, 0.2, 0.2, 0.2, 0.1])
+print(facr)
+```
+
+```bash
+[0.1, 0.30000000000000004, 0.5, 0.7, 0.8999999999999999, 0.9999999999999999]
+```
+
 ## `Fadr`
 
 It has the same purpose as the previous function, but the calculation of the accumulated relative frequencies is decreasing.
@@ -170,6 +349,28 @@ It has the same purpose as the previous function, but the calculation of the acc
 ### Return:
 
 - `aux: list`: Returns a list of relative frequencies accumulated in decreasing order.
+
+### Examples:
+
+Continuous dataset:
+```python
+fadr:list = Fadr([0.025, 0.1875, 0.625, 0.125, 0.0375])
+print(fadr)
+```
+
+```bash
+[1.0, 0.975, 0.7875, 0.1625, 0.0375]
+```
+
+Discrete dataset:
+```python
+fadr:list = Fadr([0.1, 0.2, 0.2, 0.2, 0.2, 0.1])
+print(fadr)
+```
+
+```bash
+[0.9999999999999999, 0.8999999999999999, 0.7, 0.5, 0.30000000000000004, 0.1]
+```
 
 ## `VarValues`
 
@@ -185,6 +386,17 @@ This function collects the midpoints (variable values) of a set of discrete data
 
 - `aux: list`: Returns a list of the midpoints (variable values) of the discrete data set.
 
+### Example:
+
+```python
+variable_values:list = VarValues([1,3,-2,2,4,2,5,-2,4,3])
+print(variable_values)
+```
+
+```bash
+[1, 3, -2, 2, 4, 5]
+```
+
 ## `MidPoints`
 
 This has the same purpose as the previous function, but it is used for class table (continuous dataset).
@@ -199,6 +411,19 @@ This has the same purpose as the previous function, but it is used for class tab
 
 - `aux: list`: Returns a list with the midpoints of the continuous dataset.
 
+### Example:
+
+```python
+mid_points:list = MidPoints(
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]]
+)
+print(mid_points)
+```
+
+```bash
+[55.0, 65.0, 75.0, 85.0, 95.0]
+```
+
 ## `FullRange`
 
 Function responsible for calculating the total amplitude of the set of discrete data or classes of a set of continuous data.
@@ -211,6 +436,33 @@ Function responsible for calculating the total amplitude of the set of discrete 
 ### Return:
 
 - `</>: float`: Returns a result of a calculation to find the total amplitude.
+
+### Examples:
+
+Standard form:
+```python
+full_range:float = FullRange(
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]]
+)
+print(full_range)
+```
+
+```bash
+50.0
+```
+
+Discrete dataset:
+```python
+full_range:float = FullRange(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  True
+)
+print(full_range)
+```
+
+```bash
+7.0
+```
 
 ## `ClassBreadth`
 
@@ -226,6 +478,35 @@ Function responsible for calculating the class amplitude of a set of discrete da
 
 - `</>: float`: Returns the result of a calculation to find the class amplitude.
 
+### Examples:
+
+Standard form:
+```python
+class_breadth:float = ClassBreadth(
+  50.0,
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]]
+)
+print(class_breadth)
+```
+
+```bash
+10.0
+```
+
+Discrete dataset:
+```python
+class_breadth:float = ClassBreadth(
+  7.0,
+  [1,3,-2,2,4,2,5,-2,4,3],
+  True
+)
+print(class_breadth)
+```
+
+```bash
+1.4
+```
+
 ## `Mean`
 
 Function that averages a set of discrete data.
@@ -239,6 +520,17 @@ Function that averages a set of discrete data.
 ### Return:
 
 - `aux: float`: Returns the average of a set of discrete data.
+
+### Example:
+
+```python
+mean:float = Mean([1,3,-2,2,4,2,5,-2,4,3])
+print(mean)
+```
+
+```bash
+2.0
+```
 
 ## `Mode`
 
@@ -254,6 +546,17 @@ Function that calculates the mode of a set of discrete data.
 
 - `mostRepeatingValue: list`: Returns a list of all modes from a discrete dataset.
 
+### Example:
+
+```python
+mode:list = Mode([1,3,-2,2,4,2,5,-2,4,3])
+print(mode)
+```
+
+```bash
+[-2, 2, 3, 4]
+```
+
 ## `Median`
 
 Function that calculates the median of a set of discrete data.
@@ -268,18 +571,54 @@ Function that calculates the median of a set of discrete data.
 
 - `aux: float`: Returns the median of a set of discrete data.
 
+### Example:
+
+```python
+median:float = Median([1,3,-2,2,4,2,5,-2,4,3])
+print(median)
+```
+
+```bash
+2.5
+```
+
 ## `SampleQtt`
 
 Function that calculates total samples based on the absolute frequency of a class table or the size of a set of discrete data.
 
 ### Parameters:
 
-- `set: list`: Gets the set of discrete data or the list of absolute frequencies from the class table.
+- `setOrFi: list`: Gets the set of discrete data or the list of absolute frequencies from the class table.
 - `simple: bool` (`False` by default): Dictates if what will be received in the previous parameter is a set of discrete data (`True`) or the list of absolute frequencies from the class table (`False`).
 
 ### Return:
 
 - `#: int`: Returns the number of samples from a set of discrete or continuous data.
+
+### Examples:
+
+Using the absolute frequencies from the continuous dataset:
+```python
+sample_qtt:int = SampleQtt([2, 15, 50, 10, 3])
+print(sample_qtt)
+```
+
+```bash
+80
+```
+
+Using the discrete dataset list:
+```python
+sample_qtt:int = SampleQtt(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  True
+)
+print(sample_qtt)
+```
+
+```bash
+10
+```
 
 ## `ContMean`
 
@@ -297,6 +636,21 @@ This function calculates the average of a continuous data set (class table).
 
 - `</>: float`: Returns the result of a calculation to find the average of the continuous data set.
 
+### Example:
+
+```python
+cont_mean:float = ContMean(
+  [55.0, 65.0, 75.0, 85.0, 95.0],
+  [2, 15, 50, 10, 3],
+  80
+)
+print(cont_mean)
+```
+
+```bash
+74.62
+```
+
 ## `ContMode`
 
 Function that calculates the mode of a continuous data set (class table).
@@ -312,6 +666,22 @@ Function that calculates the mode of a continuous data set (class table).
 ### Return:
 
 - `modes: list`: Returns a list of all modes from the continuous dataset.
+
+### Example:
+
+```python
+cont_mode:list = ContMode(
+  [[50, 60], [60, 70], [70, 80],
+  [80, 90], [90, 100]],
+  [2, 15, 50, 10, 3],
+  10.0
+)
+print(cont_mode)
+```
+
+```bash
+[74.67]
+```
 
 ## `ContMedian`
 
@@ -330,6 +700,22 @@ Function that calculates the median of a continuous data set (class table).
 
 - `median: float`: Returns the median of a continuous data set.
 
+### Example:
+
+```python
+cont_median:float = ContMedian(
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]],
+  [2, 15, 50, 10, 3],
+  [2, 17, 67, 77, 80],
+  10.0
+)
+print(cont_median)
+```
+
+```bash
+74.6
+```
+
 ## `SPTwo`
 
 This function calculates the variance of discrete and continuous data sets.
@@ -346,6 +732,39 @@ This function calculates the variance of discrete and continuous data sets.
 
 - `</>: float`: Returns the result of a calculation to find the variance of a set of discrete or continuous data.
 
+### Examples:
+
+Standard form:
+```python
+variance:float = SPTwo(
+  [55.0, 65.0, 75.0, 85.0, 95.0],
+  [2, 15, 50, 10, 3],
+  74.62,
+  80
+)
+print(variance)
+```
+
+```bash
+56.82
+```
+
+Discrete dataset:
+```python
+variance:float = SPTwo(
+  [1, 3, -2, 2, 4, 5],
+  [1, 2, 2, 2, 2, 1],
+  2.0,
+  10,
+  True
+)
+print(variance)
+```
+
+```bash
+3.44
+```
+
 ## `SD`
 
 This function calculates the standard deviation of the discrete dataset or class table.
@@ -357,6 +776,28 @@ This function calculates the standard deviation of the discrete dataset or class
 ### Return:
 
 - `</>: float`: Returns the result of a calculation to find the standard deviation of a set of discrete or continuous data.
+
+### Examples:
+
+Continuous dataset:
+```python
+standard_deviation:float = SD(56.82)
+print(standard_deviation)
+```
+
+```bash
+7.54
+```
+
+Discrete dataset:
+```python
+standard_deviation:float = SD(3.44)
+print(standard_deviation)
+```
+
+```bash
+1.85
+```
 
 ## `CV`
 
@@ -370,3 +811,25 @@ This function calculates the coefficient of variation of a discrete dataset or c
 ### Return:
 
 - `</>: float`: Returns the result of a calculation to find the coefficient of variation of a set of discrete or continuous data.
+
+### Examples:
+
+Continuous dataset:
+```python
+coefficient_variation:float = CV(7.54, 74.62)
+print(coefficient_variation)
+```
+
+```bash
+10.1
+```
+
+Discrete dataset:
+```python
+coefficient_variation:float = CV(1.85, 2.0)
+print(coefficient_variation)
+```
+
+```bash
+92.5
+```
