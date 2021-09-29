@@ -109,8 +109,8 @@ def VarValues(set:list):
     aux:list = []
 
     for x in set:
-            if aux.count(x) == 0:
-                aux.append(x)
+        if aux.count(x) == 0:
+            aux.append(x)
     
     return aux
 
@@ -219,7 +219,7 @@ def Median(set:list):
 # Calculation of total samples.
 #
 
-def SampleQtt(set:list, simple: bool = False):
+def SampleQtt(setOrFi:list, simple: bool = False):
     aux:int = 0
 
     if simple == False:
