@@ -44,9 +44,13 @@ Em cada função terá exemplos de como elas funcionam. Os exemplos serão basea
   - [`Mode`](#mode)
   - [`Median`](#median)
   - [`SampleQtt`](#sampleqtt)
+  - [`MaxMin`](#maxmin)
   - [`ContMean`](#contmean)
   - [`ContMode`](#contmode)
   - [`ContMedian`](#contmedian)
+  - [`Percentile`](#percentile)
+  - [`Quartiles`](#quartiles)
+  - [`CreateClassTable`](#createclasstable)
   - [`SPTwo`](#sptwo)
   - [`SD`](#sd)
   - [`CV`](#cv)
@@ -620,6 +624,44 @@ print(sample_qtt)
 10
 ```
 
+## `MaxMin`
+
+Esta função capta os pontos máximo e mínimo de um conjunto de dados discretos e contínuos.
+
+### Parâmetros:
+
+- `set: list`: Recebe uma lista com o conjunto de dados discretos e contínuos.
+- `simple: bool` (`False` por padrão): Informa qual conjunto de dados que vai ser recebido pelo padrão anterior. `False` para conjunto de dados contínuos e `True` para conjunto de dados discretos.
+
+### Return:
+
+- `max_min: list`: Retorna uma lista de duas posições onde a primeira é referente ao ponto mínimo do conjunto e a segunda é o ponto máximo do conjunto.
+
+### Exemplos:
+
+Conjunto de dados contínuos:
+```python
+max_min:list = MaxMin([[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]])
+print(max_min)
+```
+
+```bash
+[50, 100]
+```
+
+Conjunto de dados discretos:
+```python
+max_min:int = MaxMin(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  True
+)
+print(max_min)
+```
+
+```bash
+[-2, 5]
+```
+
 ## `ContMean`
 
 Esta função calcula a média de um conjunto de dados contínuos (tabela de classes).
@@ -714,6 +756,113 @@ print(cont_median)
 
 ```bash
 74.6
+```
+
+## `Percentile`
+
+Tem como objetivo calcular o valor do percentil passado pelo usuário.
+
+### Parâmetros:
+
+- `percentile: int`: Recebe o percentil a ser calculado.
+- `set: list`: Recebe a lista do conjunto de dados continuos.
+- `fi: list`: Recebe a lista de frequências absolutas do conjunto de dados.
+- `fac: list`: Recebe a lista de frequências acumuladas de forma crescente do conjunto de dados.
+- `classBreadth: float`: Recebe a amplitude de classes.
+
+### Return:
+
+- `perc_result: float`: Retorna o valor referente ao percentil passado como parâmetro.
+
+### Exemplo:
+
+```python
+percentile:float = Percentile(23, [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]], [2, 15, 50, 10, 3], [2, 17, 67, 77, 80], 10.0)
+print(percentile)
+```
+
+```bash
+70.28
+```
+## `Quartiles`
+
+Esta função é responsável por calcular os quartis de um conjunto de dados discretos ou contínuos.
+
+### Parâmetros:
+
+- `set: list` (`[]` por padrão): Recebe o conjunto de dados discretos ou contínuos.
+- `fi: list` (`[]` por padrão): Recebe uma lista com as frequências absolutas do conjunto de dados contínuos.
+- `fac: list` (`[]` por padrão): Recebe uma lista com as frequências acumuladas crescentes do conjunto de dados contínuos.
+- `classBreadth: float` (`0.0` por padrão): Recebe a amplitude de classe.
+- `simple: bool` (`False` por padrão): Indica qual tipo de conjunto de dados será recebido no parâmetro `set: list`. `False` indica conjunto de dados contínuos e `True` indica conjunto de dados discretos.
+
+### Return:
+
+- `quartile: list`: Retorna uma lista de duas posições. A primeira posição é referente ao primeiro quartil e a segunda é referente ao terceiro quartil.
+
+### Exemplos:
+
+Conjunto de dados contínuos:
+```python
+quartiles:list = Quartiles(
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]],
+  [2, 15, 50, 10, 3],
+  [2, 17, 67, 77, 80],
+  10.0
+)
+print(quartiles)
+```
+
+```bash
+[70.6, 78.6]
+```
+
+Conjunto de dados discretos:
+```python
+quartiles:list = Quartiles(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  simple=True
+)
+print(quartiles)
+```
+
+```bash
+[-0.5, 4.0]
+```
+
+## CreateClassTable
+
+Esta função tem como objetivo criar uma lista simulando uma tabela de classes para conjuntos de dados discretos.
+
+### Parâmetros:
+
+- `set: list`: Recebe a lista com o conjunto de dados discretos.
+- `classQtt: int` (`0` por padrão): Recebe uma quantidade fixa de classes a serem criadas.
+
+### Return:
+
+- `classList: list`: Retorna uma lista com as classes já organizadas.
+
+### Exemplos:
+
+Sem passar a quantidade fixa de classes:
+```python
+class_table:list = CreateClassTable([1,3,-2,2,4,2,5,-2,4,3])
+print(class_table)
+```
+
+```bash
+[[-2.0, -0.6], [-0.6, 0.79], [0.79, 2.19], [2.19, 3.59], [3.59, 5.0]]
+```
+
+Passando a quantidade fixa de classes:
+```python
+class_table:list = CreateClassTable([1,3,-2,2,4,2,5,-2,4,3], 3)
+print(class_table)
+```
+
+```bash
+[[-2.0, 0.33], [0.33, 2.66], [2.66, 5.0]]
 ```
 
 ## `SPTwo`

@@ -44,9 +44,13 @@ In each function you will have examples of how they work. The examples will be b
   - [`Mode`](#mode)
   - [`Median`](#median)
   - [`SampleQtt`](#sampleqtt)
+  - [`MaxMin`](#maxmin)
   - [`ContMean`](#contmean)
   - [`ContMode`](#contmode)
   - [`ContMedian`](#contmedian)
+  - [`Percentile`](#percentile)
+  - [`Quartiles`](#quartiles)
+  - [`CreateClassTable`](#createclasstable)
   - [`SPTwo`](#sptwo)
   - [`SD`](#sd)
   - [`CV`](#cv)
@@ -620,6 +624,44 @@ print(sample_qtt)
 10
 ```
 
+## `MaxMin`
+
+This function captures the maximum and minimum points of a set of discrete and continuous data.
+
+### Parameters:
+
+- `set: list`: Receives a list with the set of discrete and continuous data.
+- `simple: bool` (`False` by default): Informs which dataset will be received by the previous pattern. `False` for continuous dataset and `True` for discrete dataset.
+
+### Return:
+
+- `max_min: list`: Returns a list of two positions where the first is the minimum point of the set and the second is the maximum point of the set.
+
+### Examples:
+
+Continuous dataset:
+```python
+max_min:list = MaxMin([[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]])
+print(max_min)
+```
+
+```bash
+[50, 100]
+```
+
+Discrete dataset:
+```python
+max_min:int = MaxMin(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  True
+)
+print(max_min)
+```
+
+```bash
+[-2, 5]
+```
+
 ## `ContMean`
 
 This function calculates the average of a continuous data set (class table).
@@ -714,6 +756,113 @@ print(cont_median)
 
 ```bash
 74.6
+```
+
+## `Percentile`
+
+It aims to calculate the percentile value passed by the user.
+
+### Parameters:
+
+- `percentile: int`: Receives the percentile to be calculated.
+- `set: list`: Gets the list of the continuous dataset.
+- `fi: list`: Receives the list of absolute frequencies from the dataset.
+- `fac: list`: Receives the list of accumulated frequencies in ascending order from the dataset.
+- `classBreadth: float`: Receives the range of classes.
+
+### Return:
+
+- `perc_result: float`: Returns the value for the percentile passed as parameter.
+
+### Example:
+
+```python
+percentile:float = Percentile(23, [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]], [2, 15, 50, 10, 3], [2, 17, 67, 77, 80], 10.0)
+print(percentile)
+```
+
+```bash
+70.28
+```
+## `Quartiles`
+
+This function is responsible for calculating the quartiles of a set of discrete or continuous data.
+
+### Parameters:
+
+- `set: list` (`[]` by default): Receives the set of discrete or continuous data.
+- `fi: list` (`[]` by default): Receives a list with the absolute frequencies of the continuous dataset.
+- `fac: list` (`[]` by default): Receives a list of the accumulating increasing frequencies from the continuous dataset.
+- `classBreadth: float` (`0.0` by default): Receives the class breadth.
+- `simple: bool` (`False` by default): Indicates which type of dataset will be received in the `set: list` parameter. `False` indicates a continuous dataset and `True` indicates a discrete dataset.
+
+### Return:
+
+- `quartile: list`: Returns a two-position list. The first position is for the first quartile and the second is for the third quartile.
+
+### Examples:
+
+Continuous dataset:
+```python
+quartiles:list = Quartiles(
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]],
+  [2, 15, 50, 10, 3],
+  [2, 17, 67, 77, 80],
+  10.0
+)
+print(quartiles)
+```
+
+```bash
+[70.6, 78.6]
+```
+
+Discrete dataset:
+```python
+quartiles:list = Quartiles(
+  [1,3,-2,2,4,2,5,-2,4,3],
+  simple=True
+)
+print(quartiles)
+```
+
+```bash
+[-0.5, 4.0]
+```
+
+## CreateClassTable
+
+This function aims to create a list simulating a class table for discrete data sets.
+
+### Parameters:
+
+- `set: list`: Gets the list with the set of discrete data.
+- `classQtt: int` (`0` by default): Receives a fixed amount of classes to be created.
+
+### Return:
+
+- `classList: list`: Returns a list of classes already organized.
+
+### Examples:
+
+Without passing the fixed amount of classes:
+```python
+class_table:list = CreateClassTable([1,3,-2,2,4,2,5,-2,4,3])
+print(class_table)
+```
+
+```bash
+[[-2.0, -0.6], [-0.6, 0.79], [0.79, 2.19], [2.19, 3.59], [3.59, 5.0]]
+```
+
+Passing the fixed amount of classes
+```python
+class_table:list = CreateClassTable([1,3,-2,2,4,2,5,-2,4,3], 3)
+print(class_table)
+```
+
+```bash
+[[-2.0, 0.33], [0.33, 2.66], [2.66, 5.0]]
 ```
 
 ## `SPTwo`
