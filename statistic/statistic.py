@@ -1,4 +1,5 @@
 import math
+from typing import Counter
 
 #
 # Calculating the absolute frequency of a set of discrete data.
@@ -450,6 +451,33 @@ def Quartiles(set:list = [], fi:list = [], fac:list = [], classBreadth:float = 0
             return quartile
 
 #
+# Creates a list similar to a class table.
+#
+
+def CreateClass(set:list, classQtt:int = 0):
+
+    if classQtt == 0:
+        classList:list = []
+        maxMin:list = MaxMin(set, True)
+        classesQtt:int = 0
+        classBreadth:float = ClassBreadth(FullRange(set, True), set, True)
+
+        if len(set) <= 25:
+            classesQtt = 5
+        else:
+            classesQtt = int(math.floor(math.sqrt(len(set))))
+        
+        classList.append(float(maxMin[0]))
+
+        for x in range(0,classesQtt * 2,2):
+            classList.append(classList[x] + classBreadth)
+            classList.append(classList[x] + classBreadth)
+        
+        classList.pop()
+    
+    return OrganizeSet(classList)
+            
+#
 # Calculation of variance.
 #
 
@@ -556,6 +584,7 @@ def GenCalcContinuousSets(set:list, fi:list, printData:bool = False):
 #
 
 def GenCalcDiscreteSets(set:list, printData:bool = False):
+    classTable = CreateClass(set)
     fi = Fi(set)
     fir = Fir(fi)
     fac = Fac(fi)
@@ -577,6 +606,7 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
     resultVector:list = []
 
     resultVector.append(set)
+    resultVector.append(classTable)
     resultVector.append(fi)
     resultVector.append(fir)
     resultVector.append(fac)
@@ -598,6 +628,7 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
 
     if printData == True:
         print("Set: " + str(set))
+        print("Class table: " + str(classTable))
         print("Fi: " + str(fi))
         print("Fir: " + str(fir))
         print("Fac: " + str(fac))
@@ -621,6 +652,3 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
     else:
         return resultVector
     
-GenCalcContinuousSets([160,162,162,164,164,166,166,168,168,170], [7,4,8,9,12], True)
-print("------------------------")
-GenCalcDiscreteSets([1,3,-2,2,4,2,5,-2,4,3], True)
