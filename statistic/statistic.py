@@ -474,6 +474,18 @@ def CreateClassTable(set:list, classQtt:int = 0):
             classList.append(classList[x] + classBreadth)
         
         classList.pop()
+    else:
+        classList:list = []
+        maxMin:list = MaxMin(set, True)
+        classBreadth:float = FullRange(set, True) / classQtt
+
+        classList.append(float(maxMin[0]))
+
+        for x in range(0, classQtt * 2, 2):
+            classList.append(classList[x] + classBreadth)
+            classList.append(classList[x] + classBreadth)
+        
+        classList.pop()
     
     return OrganizeSet(classList)
             
@@ -652,3 +664,4 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
     else:
         return resultVector
     
+GenCalcDiscreteSets([0,0,1,4,5,3,2,4,8,4,6,7,4,5,2,1,1,1,5,3,6,4,5,6,1], True)
