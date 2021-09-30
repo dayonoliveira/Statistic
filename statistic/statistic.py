@@ -584,7 +584,7 @@ def GenCalcContinuousSets(set:list, fi:list, printData:bool = False):
 #
 
 def GenCalcDiscreteSets(set:list, printData:bool = False):
-    classTable = CreateClass(set)
+    classTable = CreateClassTable(set)
     fi = Fi(set)
     fir = Fir(fi)
     fac = Fac(fi)
