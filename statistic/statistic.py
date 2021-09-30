@@ -223,12 +223,31 @@ def SampleQtt(setOrFi:list, simple: bool = False):
     aux:int = 0
 
     if simple == False:
-        for x in set:
+        for x in setOrFi:
             aux += x
         
         return aux
     else:
-        return len(set)
+        return len(setOrFi)
+
+#
+# Calculation of maximum and minimum points.
+#
+
+def MaxMin(set:list, simple:bool = False):
+    max_min:list = []
+
+    if simple == False:
+       max_min.append(set[0][0])
+       max_min.append(set[len(set) - 1][1]) 
+    else:
+        set.sort()
+
+        max_min.append(set[0])
+        max_min.append(set[len(set) - 1])
+    
+    return max_min
+
 #
 # Arithmetic mean calculation for continuous data sets.
 #
@@ -264,6 +283,11 @@ def ContMode(classes:list, fi:list, classBreadth:float):
         if x == 0:
             aux:float = fi[x] - 0
             aux /= fi[x] - 0 + fi[x] - fi[x + 1]
+            aux *= classBreadth
+            aux += classes[x][0]
+        elif x == len(fi) - 1:
+            aux:float = fi[x] - fi[x - 1]
+            aux /= fi[x] - fi[x - 1] + fi[x] - 0
             aux *= classBreadth
             aux += classes[x][0]
         else:
@@ -313,6 +337,119 @@ def ContMedian(classes:list, fi:list, fac:list, classBreadth:float):
         return round(median, 2)
 
 #
+# Calculate the percentile
+#
+
+def Percentile(percentile:int, set:list, fi:list, fac:list, classBreadth:float):
+    perc_result:float = 0.0
+    element:int = 0
+
+    element = (percentile * fac[len(fac) - 1]) / 100
+
+    for x in range(len(fac)):
+        if element < fac[x]:
+            perc_result = element - fac[x - 1]
+            perc_result *= classBreadth
+            perc_result /= fi[x]
+            perc_result += set[x][0]
+            break
+
+    return perc_result
+
+#
+# Calculate the quartile
+#
+
+def Quartiles(set:list = [], fi:list = [], fac:list = [], classBreadth:float = 0.0, simple:bool = False):
+    quartileIndex:int  = 0
+    quartile:list = [0.0, 0.0]
+    
+    if simple == False:
+        aux:int = fac[len(fac) - 1]
+
+        if aux % 2 != 0:
+            aux /= 4
+
+            for x in fac:
+                if aux > x:
+                    quartileIndex += 1
+
+            quartile[0] = aux - fac[quartileIndex - 1]
+            quartile[0] /= fi[quartileIndex]
+            quartile[0] *= classBreadth
+            quartile[0] += set[quartileIndex][0]
+
+            round(quartile[0], 2)
+
+            aux = fac[len(fac) - 1] * 3
+            aux /= 4
+
+            for x in fac:
+                if aux > x:
+                    quartileIndex += 1
+
+            quartile[1] = aux - fac[quartileIndex - 1]
+            quartile[1] /= fi[quartileIndex]
+            quartile[1] *= classBreadth
+            quartile[1] += set[quartileIndex][0]
+
+            round(quartile[1], 2)
+
+            return quartile
+        else:
+            aux /= 4
+
+            for x in fac:
+                if aux > x and aux + 1 > x:
+                    quartileIndex += 1
+
+            quartile[0] = aux - fac[quartileIndex - 1]
+            quartile[0] /= fi[quartileIndex]
+            quartile[0] *= classBreadth
+            quartile[0] += set[quartileIndex][0]
+
+            round(quartile[0], 2)
+
+            aux = fac[len(fac) - 1] * 3
+            aux /= 4
+            quartileIndex = 0
+
+            for x in fac:
+                if aux > x and aux + 1 > x:
+                    quartileIndex += 1
+
+            quartile[1] = aux - fac[quartileIndex - 1]
+            quartile[1] /= fi[quartileIndex]
+            quartile[1] *= classBreadth
+            quartile[1] += set[quartileIndex][0]
+
+            round(quartile[1], 2)
+            
+            return quartile
+    else:
+        if len(set) % 2 != 0:
+            aux:int = int(math.floor(len(set) / 2) / 2)
+            
+            quartile[0] = (set[aux] + set[aux - 1]) / 2
+
+            aux = int(math.floor(len(set) / 2) + aux)
+
+            quartile[1] = (set[aux] + set[aux + 1]) / 2
+
+            return quartile
+        else:
+            aux:list = []
+
+            aux.append(int((len(set) / 2) - 1))
+            aux.append(int(len(set) / 2))
+            aux.append(int(aux[0] / 2))
+
+            quartile[0] = (set[aux[0] - aux[2]] + set[aux[0] - aux[2] - 1]) / 2
+            quartile[1] = (set[aux[1] + aux[2]] + set[aux[1] + aux[2] + 1]) / 2
+
+            return quartile
+
+#
 # Calculation of variance.
 #
 
@@ -359,9 +496,11 @@ def GenCalcContinuousSets(set:list, fi:list, printData:bool = False):
     fullRange = FullRange(classes)
     classBreadth = ClassBreadth(fullRange, classes)
     sampleQtt = SampleQtt(fi)
+    maxMin = MaxMin(classes)
     contMean = ContMean(midPoints, fi, sampleQtt)
     contMode = ContMode(classes, fi, classBreadth)
     contMedian = ContMedian(classes, fi, fac, classBreadth)
+    quartiles = Quartiles(classes, fi, fac, classBreadth)
     variance = SPTwo(midPoints, fi, contMean, sampleQtt)
     standardDeviation = SD(variance)
     coefficientVariation = CV(standardDeviation, contMean)
@@ -378,9 +517,11 @@ def GenCalcContinuousSets(set:list, fi:list, printData:bool = False):
     resultVector.append(fullRange)
     resultVector.append(classBreadth)
     resultVector.append(sampleQtt)
+    resultVector.append(maxMin)
     resultVector.append(contMean)
     resultVector.append(contMode)
     resultVector.append(contMedian)
+    resultVector.append(quartiles)
     resultVector.append(variance)
     resultVector.append(standardDeviation)
     resultVector.append(coefficientVariation)
@@ -397,9 +538,11 @@ def GenCalcContinuousSets(set:list, fi:list, printData:bool = False):
         print("Full range: " + str(fullRange))
         print("Class breadth: " + str(classBreadth))
         print("Total samples: " + str(sampleQtt))
+        print("Min: " + str(maxMin[0]) + " | Max: " + str(maxMin[1]))
         print("Mean: " + str(contMean))
         print("Mode: " + str(contMode))
         print("Median: " + str(contMedian))
+        print("Q1: " + str(quartiles[0]) + " | Q3: " + str(quartiles[1]))
         print("Variance: " + str(variance))
         print("Standart deviation: " + str(standardDeviation))
         print("Coefficient variation: " + str(coefficientVariation))
@@ -423,9 +566,11 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
     fullRange = FullRange(set, True)
     classBreadth = ClassBreadth(fullRange, set, True)
     sampleQtt = SampleQtt(fi)
+    maxMin = MaxMin(set, True)
     mean = Mean(set)
     mode = Mode(set)
     median = Median(set)
+    quartiles = Quartiles(set,simple=True)
     variance = SPTwo(varValues, fi, mean, sampleQtt, True)
     standardDeviation = SD(variance)
     coefficientVariation = CV(standardDeviation, mean)
@@ -442,9 +587,11 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
     resultVector.append(fullRange)
     resultVector.append(classBreadth)
     resultVector.append(sampleQtt)
+    resultVector.append(maxMin)
     resultVector.append(mean)
     resultVector.append(mode)
     resultVector.append(median)
+    resultVector.append(quartiles)
     resultVector.append(variance)
     resultVector.append(standardDeviation)
     resultVector.append(coefficientVariation)
@@ -461,9 +608,11 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
         print("Full range: " + str(fullRange))
         print("Class breadth: " + str(classBreadth))
         print("Total samples: " + str(sampleQtt))
+        print("Min: " + str(maxMin[0]) + " | Max: " + str(maxMin[1]))
         print("Mean: " + str(mean))
         print("Mode: " + str(mode))
         print("Median: " + str(median))
+        print("Q1: " + str(quartiles[0]) + " | Q3: " + str(quartiles[1]))
         print("Variance: " + str(variance))
         print("Standart deviation: " + str(standardDeviation))
         print("Coefficient variation: " + str(coefficientVariation))
@@ -471,3 +620,7 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
         return resultVector
     else:
         return resultVector
+    
+GenCalcContinuousSets([160,162,162,164,164,166,166,168,168,170], [7,4,8,9,12], True)
+print("------------------------")
+GenCalcDiscreteSets([1,3,-2,2,4,2,5,-2,4,3], True)
