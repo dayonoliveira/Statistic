@@ -663,5 +663,3 @@ def GenCalcDiscreteSets(set:list, printData:bool = False):
         return resultVector
     else:
         return resultVector
-    
-GenCalcDiscreteSets([0,0,1,4,5,3,2,4,8,4,6,7,4,5,2,1,1,1,5,3,6,4,5,6,1], True)
