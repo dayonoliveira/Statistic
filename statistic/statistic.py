@@ -454,7 +454,7 @@ def Quartiles(set:list = [], fi:list = [], fac:list = [], classBreadth:float = 0
 # Creates a list similar to a class table.
 #
 
-def CreateClass(set:list, classQtt:int = 0):
+def CreateClassTable(set:list, classQtt:int = 0):
 
     if classQtt == 0:
         classList:list = []
