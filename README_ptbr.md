@@ -1,5 +1,10 @@
 [Inglês](README.md) | Português
 
+> *Aviso:* <br>
+> O projeto irá passar por uma mudança de estrutura de pastas e arquivos em breve. <br>
+> O motivo da mudança é para que as funções sejam melhor organizadas em módulos específicos para elas. Isso é o suficiente para que a estrutura de pastas e arquivos venha a ser modificada. <br>
+> A previsão é que até a data *10/10* as modificações sejam implementadas.
+
 # Statistic
 
 Essa é uma biblioteca desenvolvida em Python que tem como objetivo fornecer as funções necessárias para realizar cálculos estatísticos.

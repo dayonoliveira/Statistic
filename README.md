@@ -1,5 +1,10 @@
 English | [Portuguese](README_ptbr.md)
 
+> *Warning:* <br>
+> The project will undergo a change of file and folder structure soon. <br>
+> The reason for the change is so that the functions are better organized in modules specific to them. This is enough for the structure of folders and files to be modified. <br>
+> It is expected that by the date *10/10* the changes will be implemented.
+
 # Statistic
 
 This is a library developed in Python that aims to provide the necessary functions to perform statistical calculations.
