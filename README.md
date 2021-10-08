@@ -14,11 +14,11 @@ This is a library developed in Python that aims to provide the necessary functio
 
 ## How to use
 
-For now, the only possible method is:
+Go to your terminal, navigate to your project folder and enter the following command:
 
-1. Download the project .zip file;
-2. Take the `/statistic` folder and place it in your project;
-3. In the file you want to use the methods, import the module that best suits your needs and is already able to use the functions.
+```
+pip install sttc
+```
 
 ## Architecture
 

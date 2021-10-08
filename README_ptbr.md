@@ -14,11 +14,11 @@ Essa é uma biblioteca desenvolvida em Python que tem como objetivo fornecer as 
 
 ## Como usar
 
-Por enquanto, o único método possível é:
+Vá no seu terminal, navegue até a pasta do seu projeto e insira o seguinte comando:
 
-1. Baixe o arquivo .zip do projeto;
-2. Pegue a pasta `/statistic` e coloque no seu projeto;
-3. No arquivo que deseja usar os métodos, importe o módulo que mais se adequa a sua necessidade e já está apto a usar as funções.
+```
+pip install sttc
+```
 
 ## Arquitetura
 
