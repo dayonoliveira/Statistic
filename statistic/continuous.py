@@ -291,7 +291,7 @@ def gen_calc_continuous_sets(set:list, fi:list, print_data:bool = False):
         print("Mode: " + str(mod))
         print("Median: " + str(med))
         print("Q0: " + str(quart[0]) + " | Q1: " + str(quart[1]) + " | Q2: " + str(quart[2]) + " | Q3: " + str(quart[3]) + " | Q4: " + str(quart[4]))
-        print("Variance: " + str(variance))
+        print("Variance: " + str(var))
         print("Standard deviation: " + str(standard_deviation))
         print("Coefficient variation: " + str(coefficient_variation))
 
