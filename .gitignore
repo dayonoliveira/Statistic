@@ -1,5 +1,9 @@
 # Files
 drafts.txt
+setup.py
 
 #Folders
 __pycache__
+build
+dist
+sttc.egg-info
