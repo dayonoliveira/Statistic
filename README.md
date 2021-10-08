@@ -64,6 +64,6 @@ It has a `__init__.py` file where the module functions are imported.
 
 ## Documentations
 
-This project, so far, contains 2 modules with functions. To find out more details about each function, go to `/documentation`, choose the folder with the language of your choice and there will be the function documentation files.
+This project, so far, contains 2 modules with functions. To find out more details about each function, go to [`/documentation`](https://github.com/dayonoliveira/Statistic/tree/master/documentation), choose the folder with the language of your choice and there will be the function documentation files.
 
 > Note: Whenever there is a change in any of the functions the documentation will change.
