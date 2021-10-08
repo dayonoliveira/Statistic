@@ -1,10 +1,5 @@
 English | [Portuguese](README_ptbr.md)
 
-> *Warning:* <br>
-> The project will undergo a change of file and folder structure soon. <br>
-> The reason for the change is so that the functions are better organized in modules specific to them. This is enough for the structure of folders and files to be modified. <br>
-> It is expected that by the date *10/10* the changes will be implemented.
-
 # Statistic
 
 This is a library developed in Python that aims to provide the necessary functions to perform statistical calculations.
@@ -14,18 +9,61 @@ This is a library developed in Python that aims to provide the necessary functio
 ### Summary
 
   - [How to use](#how-to-use)
-  - [More details](#more-details)
+  - [Architecture](#architecture)
+  - [Documentations](#documentations)
 
 ## How to use
 
 For now, the only possible method is:
 
 1. Download the project .zip file;
-2. Take the folder containing the `statistic.py` file and place it in your project;
-3. In the file you want to use the methods, import the folder and file and, if preferred, the methods you will use separately.
+2. Take the `/statistic` folder and place it in your project;
+3. In the file you want to use the methods, import the module that best suits your needs and is already able to use the functions.
 
-## More details
+## Architecture
 
-In this project there is a file with a more detailed explanation of what each method does. The file that has these explanations and details is the [`descriptions.md`](descriptions.md).
+Below is the project folder architecture:
 
-> Note: The `descriptions.md` file is ready. If there is any structure modification in the `statistic.py` file, the `descriptions.md` will be modified.
+- `/Statistic`
+  - `/documentation`
+    - `english`
+    - `português-brasil`
+  - `/img`
+  - `/others` (hidden for now)
+  - `/statistic`
+  
+### `/Statistic`
+
+It is the main project folder.
+
+### `/documentation`
+
+This folder contains the translated documentation (English and Brazilian Portuguese, for now).
+
+### `/english`
+
+Contains documentation for modules in English.
+
+### `/português-brasil`
+
+Contains the modules documentation in Brazilian Portuguese language.
+
+### `/img`
+
+In this folder are the images used in the project.
+
+### `/others`
+
+In this one, there are sketches and things related to that.
+
+### `/statistic`
+
+This is the folder where the modules are located. In short, it is the main package of the project.
+
+It has a `__init__.py` file where the module functions are imported.
+
+## Documentations
+
+This project, so far, contains 2 modules with functions. To find out more details about each function, go to `/documentation`, choose the folder with the language of your choice and there will be the function documentation files.
+
+> Note: Whenever there is a change in any of the functions the documentation will change.
