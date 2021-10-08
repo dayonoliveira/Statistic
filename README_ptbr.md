@@ -64,6 +64,6 @@ Nela tem um arquivo `__init__.py` onde é importado as funções dos módulos.
 
 ## Documentações
 
-Este projeto, até o momento, contém 2 módulos com funções. Para saber mais detalhes sobre cada função, vá em `/documentation`, escolha a pasta com o idioma de sua preferência e lá vão estar os arquivos de documentação das funções.
+Este projeto, até o momento, contém 2 módulos com funções. Para saber mais detalhes sobre cada função, vá em [`/documentation`](https://github.com/dayonoliveira/Statistic/tree/master/documentation), escolha a pasta com o idioma de sua preferência e lá vão estar os arquivos de documentação das funções.
 
 > Nota: Sempre que houver alguma mudança em alguma das funções as documentações irão mudar.
