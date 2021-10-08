@@ -185,87 +185,35 @@ def median(classes:list, fi:list, fac:list, class_breadth:float):
 
 
 def percentile(percentile:int, set:list, fi:list, fac:list, class_breadth:float):
-    perc_result:float = 0.0
-    element:int = 0
+    
+    if percentile == 0:
+        return set[0][0]
+    elif percentile == 100:
+        return set[len(set) - 1][1]
+    else:
+        perc_result:float = 0.0
+        element:int = 0
 
-    element = (percentile * fac[len(fac) - 1]) / 100
+        element = (percentile * fac[len(fac) - 1]) / 100
 
-    for x in range(len(fac)):
-        if element < fac[x]:
-            perc_result = element - fac[x - 1]
-            perc_result *= class_breadth
-            perc_result /= fi[x]
-            perc_result += set[x][0]
-            break
+        for x in range(len(fac)):
+            if element < fac[x]:
+                perc_result = element - fac[x - 1]
+                perc_result *= class_breadth
+                perc_result /= fi[x]
+                perc_result += set[x][0]
+                break
 
-    return perc_result
+        return perc_result
 
 
 def quartiles(set:list, fi:list, fac:list, class_breadth:float):
-    quartile_index:int  = 0
-    quartile:list = [0.0, 0.0]
+    quartile:list = []
+
+    for x in range(0, 101, 25):
+        quartile.append(percentile(x, set, fi, fac, class_breadth))
     
-    aux:int = fac[len(fac) - 1]
-
-    if aux % 2 != 0:
-        aux /= 4
-
-        for x in fac:
-            if aux > x:
-                quartile_index += 1
-
-        quartile[0] = aux - fac[quartile_index - 1]
-        quartile[0] /= fi[quartile_index]
-        quartile[0] *= class_breadth
-        quartile[0] += set[quartile_index][0]
-
-        round(quartile[0], 2)
-
-        aux = fac[len(fac) - 1] * 3
-        aux /= 4
-
-        for x in fac:
-            if aux > x:
-                quartile_index += 1
-
-        quartile[1] = aux - fac[quartile_index - 1]
-        quartile[1] /= fi[quartile_index]
-        quartile[1] *= class_breadth
-        quartile[1] += set[quartile_index][0]
-
-        round(quartile[1], 2)
-
-        return quartile
-    else:
-        aux /= 4
-
-        for x in fac:
-            if aux > x and aux + 1 > x:
-                quartile_index += 1
-
-        quartile[0] = aux - fac[quartile_index - 1]
-        quartile[0] /= fi[quartile_index]
-        quartile[0] *= class_breadth
-        quartile[0] += set[quartile_index][0]
-
-        round(quartile[0], 2)
-
-        aux = fac[len(fac) - 1] * 3
-        aux /= 4
-        quartile_index = 0
-
-        for x in fac:
-            if aux > x and aux + 1 > x:
-                quartile_index += 1
-
-        quartile[1] = aux - fac[quartile_index - 1]
-        quartile[1] /= fi[quartile_index]
-        quartile[1] *= class_breadth
-        quartile[1] += set[quartile_index][0]
-
-        round(quartile[1], 2)
-        
-        return quartile
+    return quartile
 
 
 def variance(mid_point:list, fi:list, mean:float, sample_qtt:int):
@@ -290,8 +238,8 @@ def gen_calc_continuous_sets(set:list, fi:list, print_data:bool = False):
     fc = fac(fi)
     fd = fad(fi)
     fr = fir(fi)
-    fcr = facr(fir)
-    fdr = fadr(fir)
+    fcr = facr(fr)
+    fdr = fadr(fr)
     m_p = mid_points(classes)
     f_r = full_range(classes)
     c_b = class_breadth(f_r, classes)
@@ -302,7 +250,7 @@ def gen_calc_continuous_sets(set:list, fi:list, print_data:bool = False):
     med = median(classes, fi, fc, c_b)
     quart = quartiles(classes, fi, fc, c_b)
     var = variance(m_p, fi, average, s_q)
-    standard_deviation = sd(variance)
+    standard_deviation = sd(var)
     coefficient_variation = cv(standard_deviation, average)
     result_vector:list = []
 
@@ -342,9 +290,9 @@ def gen_calc_continuous_sets(set:list, fi:list, print_data:bool = False):
         print("Mean: " + str(average))
         print("Mode: " + str(mod))
         print("Median: " + str(med))
-        print("Q1: " + str(quart[0]) + " | Q3: " + str(quart[1]))
+        print("Q0: " + str(quart[0]) + " | Q1: " + str(quart[1]) + " | Q2: " + str(quart[2]) + " | Q3: " + str(quart[3]) + " | Q4: " + str(quart[4]))
         print("Variance: " + str(variance))
-        print("Standart deviation: " + str(standard_deviation))
+        print("Standard deviation: " + str(standard_deviation))
         print("Coefficient variation: " + str(coefficient_variation))
 
         return result_vector

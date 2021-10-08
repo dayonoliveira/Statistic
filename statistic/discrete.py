@@ -168,50 +168,63 @@ def max_min(set:list):
     return max_min
 
 
+def percentile(perc:int, set:list):
+
+    if perc == 100:
+        set.sort()
+        return set[len(set) - 1]
+    elif perc == 0:
+        set.sort()
+        return set[0]
+    else:
+        i:int = math.floor(((perc * (len(set) - 1)) / 100) + 1)
+        floatPart:float = (((perc * (len(set) - 1)) / 100) + 1) - i
+        value:float = 0.0
+
+        set.sort()
+
+        value = set[i - 1] + floatPart * (set[i] - set[i - 1])
+
+        return value
+
 
 def quartiles(set:list):
-    quartile:list = [0.0, 0.0]
+    quartile:list = []
+    perc:int = 0
     
     set.sort()
 
-    if len(set) % 2 != 0:
-        q1:int = int(math.floor(len(set) * 0.25))
-        q2:int = int(math.floor(len(set) * 0.5))
-        q3:int = int(math.floor(len(set) * 0.75))
-
-        quartile[0] = set[q1]
-        quartile[1] = set[q3]
-
-        return quartile
-    else:
-        q1:int = int(math.floor(len(set) * 0.25))
-        q2:int = int(math.floor(len(set) * 0.5))
-        q3:int = int(math.floor(len(set) * 0.75))
-
-        if q2 % 2 != 0:
-            quartile[0] = set[q1]
-            quartile[1] = set[q3]
+    for x in range(5):
+        if x == 0:
+            quartile.append(set[0])
+        elif x == 4:
+            quartile.append(set[len(set) - 1])
         else:
-            quartile[0] = (set[q1] + set[q1 - 1]) / 2
-            quartile[1] = (set[q3] + set[q3 - 1]) / 2
+            i:int = math.floor(((perc * (len(set) - 1)) / 100) + 1)
+            floatPart:float = (((perc * (len(set) - 1)) / 100) + 1) - i
+            value:float = set[i - 1] + floatPart * (set[i] - set[i - 1])
 
-        return quartile
+            quartile.append(value)
+
+        perc += 25
+
+    return quartile
 
 
 def create_class_table(set:list, class_qtt:int = 0):
 
     if class_qtt == 0:
         class_list:list = []
-        mxmn:list = max_min(set, True)
+        mx_mn:list = max_min(set)
         classes_qtt:int = 0
-        c_b:float = class_breadth(full_range(set, True), set, True)
+        c_b:float = class_breadth(full_range(set), set)
 
         if len(set) <= 25:
             classes_qtt = 5
         else:
             classes_qtt = int(math.floor(math.sqrt(len(set))))
         
-        class_list.append(float(mxmn[0]))
+        class_list.append(float(mx_mn[0]))
 
         for x in range(0,classes_qtt * 2,2):
             class_list.append(class_list[x] + c_b)
@@ -220,10 +233,10 @@ def create_class_table(set:list, class_qtt:int = 0):
         class_list.pop()
     else:
         class_list:list = []
-        mxmn:list = max_min(set, True)
+        mx_mn:list = max_min(set, True)
         c_b:float = full_range(set, True) / class_qtt
 
-        class_list.append(float(mxmn[0]))
+        class_list.append(float(mx_mn[0]))
 
         for x in range(0, class_qtt * 2, 2):
             class_list.append(class_list[x] + c_b)
@@ -263,13 +276,13 @@ def gen_calc_discrete_sets(set:list, print_data:bool = False):
     v_v = var_values(set)
     f_r = full_range(set)
     c_b = class_breadth(f_r, set)
-    sampleQtt = sample_qtt(fa)
-    maxMin = max_min(set)
+    sample_q = sample_qtt(fa)
+    mx_mn = max_min(set)
     average = mean(set)
     mod = mode(set)
     med = median(set)
     quart = quartiles(set)
-    var = variance(v_v, fi, average, sampleQtt)
+    var = variance(v_v, fa, average, sample_q)
     standard_deviation = sd(var)
     coefficient_variation = cv(standard_deviation, average)
     result_vector:list = []
@@ -285,8 +298,8 @@ def gen_calc_discrete_sets(set:list, print_data:bool = False):
     result_vector.append(v_v)
     result_vector.append(f_r)
     result_vector.append(c_b)
-    result_vector.append(sampleQtt)
-    result_vector.append(maxMin)
+    result_vector.append(sample_q)
+    result_vector.append(mx_mn)
     result_vector.append(average)
     result_vector.append(mod)
     result_vector.append(med)
@@ -298,23 +311,23 @@ def gen_calc_discrete_sets(set:list, print_data:bool = False):
     if print_data == True:
         print("Set: " + str(set))
         print("Class table: " + str(class_table))
-        print("Fi: " + str(fi))
-        print("Fir: " + str(fir))
-        print("Fac: " + str(fac))
-        print("Fad: " + str(fad))
-        print("Facr: " + str(facr))
-        print("Fadr: " + str(fadr))
+        print("Fi: " + str(fa))
+        print("Fir: " + str(fr))
+        print("Fac: " + str(fc))
+        print("Fad: " + str(fd))
+        print("Facr: " + str(fcr))
+        print("Fadr: " + str(fdr))
         print("Mid points: " + str(v_v))
         print("Full range: " + str(f_r))
         print("Class breadth: " + str(c_b))
-        print("Total samples: " + str(sampleQtt))
-        print("Min: " + str(maxMin[0]) + " | Max: " + str(maxMin[1]))
+        print("Total samples: " + str(sample_q))
+        print("Min: " + str(mx_mn[0]) + " | Max: " + str(mx_mn[1]))
         print("Mean: " + str(average))
         print("Mode: " + str(mod))
         print("Median: " + str(med))
-        print("Q1: " + str(quart[0]) + " | Q3: " + str(quart[1]))
+        print("Q0: " + str(quart[0]) + " | Q1: " + str(quart[1]) + " | Q2: " + str(quart[2]) + " | Q3: " + str(quart[3]) + " | Q4: " + str(quart[4]))
         print("Variance: " + str(var))
-        print("Standart deviation: " + str(standard_deviation))
+        print("Standard deviation: " + str(standard_deviation))
         print("Coefficient variation: " + str(coefficient_variation))
 
         return result_vector
