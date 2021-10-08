@@ -388,7 +388,13 @@ It aims to calculate the percentile value passed by the user.
 ### Example:
 
 ```python
-perc:float = percentile(23, [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]], [2, 15, 50, 10, 3], [2, 17, 67, 77, 80], 10.0)
+perc:float = percentile(
+  23,
+  [[50, 60], [60, 70], [70, 80], [80, 90], [90, 100]],
+  [2, 15, 50, 10, 3],
+  [2, 17, 67, 77, 80],
+  10.0
+)
 print(perc)
 ```
 
@@ -571,10 +577,12 @@ Mid points: [55.0, 65.0, 75.0, 85.0, 95.0]
 Full range: 50.0
 Class breadth: 10.0
 Total samples: 80
+Min: 50 | Max: 100
 Mean: 74.62
-Mode: [74.67]
+Mode: 74.66666666666667
 Median: 74.6
+Q0: 50 | Q1: 70.6 | Q2: 74.6 | Q3: 78.6 | Q4: 100
 Variance: 56.82
-Standart deviation: 7.54
-Coefficient variation: 10.1
+Standard deviation: 7.5378807081049155
+Coefficient variation: 10.101689504294981
 ```
